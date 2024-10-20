@@ -1,0 +1,11 @@
+@use '../abstracts' as *;
+
+.header {
+	border-bottom: 1px solid $grey-200;
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
