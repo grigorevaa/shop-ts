@@ -1,4 +1,14 @@
 .profile-and-cart {
 	display: flex;
 	gap: 1rem;
+
+	button {
+		padding: 0.8rem 1rem;
+		border-radius: 1.2rem;
+		font-size: 1.6rem;
+	}
+
+	.icon {
+		margin-right: 0.6rem;
+	}
 }

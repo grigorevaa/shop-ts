@@ -2,7 +2,7 @@
 
 .search-bar {
 	position: relative;
-	left: -8rem;
+	left: -2rem;
 	display: flex;
 	align-items: center;
 
@@ -10,17 +10,21 @@
 		color: $grey-300;
 		position: absolute;
 		left: 1.2rem;
-		top: 1.2rem;
+		top: 1rem;
 	}
 
 	input {
 		border: 1px solid $grey-300;
-		padding: 1.2rem 2rem;
+		padding: 1rem 2rem;
 		padding-left: 4.2rem;
 		padding-right: 4rem;
 		width: 40rem;
-		border-radius: 2rem;
+		border-radius: 1.2rem;
 		font-size: 1.6rem;
+
+		&::placeholder {
+			color: $grey-400;
+		}
 
 		&:focus {
 			border: 1px solid $grey-700;
@@ -30,10 +34,9 @@
 	.clear-button {
 		background: none;
 		border: none;
-		cursor: pointer;
 		position: absolute;
 		right: 1.2rem;
-		top: 1.2rem;
+		top: 1rem;
 		color: $grey-300;
 
 		&:hover {

@@ -6,7 +6,7 @@ export const Search: React.FC = () => {
 			<div className="icon">
 				<SearchIcon width={22} height={22} />
 			</div>
-			<input type="text" placeholder="Search" />
+			<input type="text" placeholder="Поиск..." />
 			<button className="clear-button">
 				<X width={22} height={22} />
 			</button>
