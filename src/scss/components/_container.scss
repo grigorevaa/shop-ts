@@ -3,4 +3,8 @@
 .container {
 	width: $container-width;
 	margin: 0 auto;
+
+	&--home {
+		width: 100%;
+	}
 }

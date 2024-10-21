@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+.container--home {
+	z-index: 10;
+	position: sticky;
+	top: 0;
+}
+
+.container--home--moved {
+	@extend .container--home;
+	box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.25);
+}
+
+.content-top {
+	width: 70%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $grey-100;
+}
+
+.content-bottom {
+	padding-top: 2rem;
+	.products {
+		height: 1000rem;
+		background-color: $grey-300;
+	}
+}
