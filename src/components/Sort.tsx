@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 const sortOptions = [
-	{ value: 'asc-rate', name: 'рейтинг (возр.)' },
 	{ value: 'desc-rate', name: 'рейтинг (убыв.)' },
-	{ value: 'price-asc', name: 'цена (возр.)' },
+	{ value: 'asc-rate', name: 'рейтинг (возр.)' },
 	{ value: 'price-desc', name: 'цена (убыв.)' },
+	{ value: 'price-asc', name: 'цена (возр.)' },
 	{ value: 'alphabet', name: 'алфавит' },
 ];
 

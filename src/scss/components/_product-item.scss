@@ -1,0 +1,62 @@
+@use '../abstracts' as *;
+
+.product-item {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid $primary-base-light;
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+	border-radius: 2rem 2rem 0 0;
+
+	.info {
+		padding: 1rem;
+		padding-bottom: 0;
+	}
+
+	.name {
+		font-size: 2rem;
+	}
+
+	.description {
+		font-size: 1.2rem;
+		color: $grey-400;
+	}
+
+	.rating {
+		display: flex;
+
+		.icon {
+			color: $primary-base-dark;
+		}
+	}
+
+	.price-rating {
+		display: flex;
+		justify-content: space-between;
+		font-size: 1.8rem;
+		padding: 1rem;
+	}
+
+	.bottom {
+		margin-top: auto;
+	}
+
+	img {
+		border-radius: 2rem 2rem 0 0;
+		width: 100%;
+		border-bottom: 2px solid $primary-base-light;
+	}
+
+	button {
+		width: 100%;
+		font-size: 1.6rem;
+		padding: 1rem 2rem;
+		border: 1px solid $primary-base-light;
+		background-color: $primary-base-light;
+		color: $primary-base-dark;
+
+		&:hover {
+			background-color: $primary-base;
+			color: $grey-100;
+		}
+	}
+}

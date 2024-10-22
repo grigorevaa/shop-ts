@@ -7,10 +7,12 @@
 		display: flex;
 		gap: 2rem;
 
-		li {
+		a {
 			padding: 1.8rem 0 1.8rem 0;
 			cursor: pointer;
 			transition: all 0.3s ease;
+			text-decoration: none;
+			color: $grey-900;
 
 			&:hover {
 				color: $primary-base;

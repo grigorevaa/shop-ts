@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './components/AppLayout';
 import { HomePage } from './components/pages/HomePage';
@@ -11,7 +12,8 @@ function App() {
 			<Routes>
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/post/:id" element={<ProductPage />} />
+					{/* <Route path="/:category" element={<HomePage />} /> */}
+					<Route path="/product/:id" element={<ProductPage />} />
 				</Route>
 				<Route path="*" element={<NotFound />} />
 			</Routes>

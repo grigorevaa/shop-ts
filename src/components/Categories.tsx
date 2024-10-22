@@ -1,36 +1,31 @@
 import React, { useState } from 'react';
 
-const сategories = [
-	{ id: 0, name: 'Пирожные' },
-	{ id: 1, name: 'Торты' },
-	{ id: 2, name: 'Кексы' },
-	{ id: 3, name: 'Печенье' },
-	{ id: 4, name: 'Мороженое' },
-	{ id: 5, name: 'Шоколад' },
-	{ id: 6, name: 'Зефир' },
-	{ id: 7, name: 'Карамель' },
-	{ id: 8, name: 'Маршмеллоу' },
-	{ id: 9, name: 'Фруктовый десерт' },
-];
-export const Categories: React.FC = () => {
-	const [active, setActive] = useState(0);
+type TCategory = {
+	id: number;
+	name: string;
+};
 
-	const onClickActive = (id: number) => {
-		setActive(id);
-	};
-
+interface Props {
+	categories: TCategory[];
+	activeCategory: number;
+	onSetActiveCategory: (id: number) => void;
+}
+export const Categories: React.FC<Props> = ({
+	categories,
+	activeCategory,
+	onSetActiveCategory,
+}) => {
 	return (
 		<div className="categories">
 			<ul>
-				{сategories.map(category => (
-					<li
-						onClick={() => {
-							onClickActive(category.id);
-						}}
-						className={`${active === category.id ? 'active' : ''}`}
+				{categories.map(category => (
+					<a
+						href={`#${category.name}`}
+						onClick={() => onSetActiveCategory(category.id)}
+						className={`${activeCategory === category.id ? 'active' : ''}`}
 						key={category.id}>
 						{category.name}
-					</li>
+					</a>
 				))}
 			</ul>
 		</div>
