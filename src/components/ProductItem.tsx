@@ -22,17 +22,16 @@ export const ProductItem: React.FC<Props> = ({
 				<div className="name">{name}</div>
 				<div className="description">{description}</div>
 			</div>
-			<div className="bottom">
-				<div className="price-rating">
-					<div className="rating">
-						<Star className="icon" />
-						<div>{rating}</div>
-					</div>
-					<span>
-						<b>{price}</b> ₽
-					</span>
+
+			<div className="price-rating">
+				<div className="rating">
+					<Star className="icon" />
+					<div>{rating}</div>
 				</div>
 				<button className="primary-button">В корзину</button>
+				<span>
+					<b>{price}</b> ₽
+				</span>
 			</div>
 		</div>
 	);

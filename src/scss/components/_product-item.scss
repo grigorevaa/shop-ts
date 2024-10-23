@@ -3,13 +3,10 @@
 .product-item {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid $primary-base-light;
-	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
-	border-radius: 2rem;
 
 	.info {
-		padding: 1rem;
 		padding-bottom: 0;
+		margin-bottom: 1rem;
 	}
 
 	.name {
@@ -17,7 +14,7 @@
 	}
 
 	.description {
-		font-size: 1.2rem;
+		font-size: 1.4rem;
 		color: $grey-400;
 	}
 
@@ -25,6 +22,7 @@
 		display: flex;
 
 		.icon {
+			margin-right: 0.5rem;
 			color: $primary-base-dark;
 		}
 	}
@@ -32,32 +30,30 @@
 	.price-rating {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		font-size: 1.8rem;
-		padding: 1rem;
-	}
-
-	.bottom {
 		margin-top: auto;
 	}
 
 	img {
-		border-radius: 2rem 2rem 0 0;
+		border-radius: 5rem;
 		width: 100%;
-		border-bottom: 2px solid $primary-base-light;
+		box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+		margin-bottom: 1rem;
 	}
 
 	button {
-		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
 		font-size: 1.6rem;
 		padding: 1rem 2rem;
-		// border: 1px solid $primary-base-light;
-		border-radius: 0 0 2rem 2rem;
+		border-radius: 1rem;
 		background-color: $primary-base-light;
 		color: $primary-base-dark;
 
 		&:hover {
-			background-color: $primary-base;
-			color: $grey-100;
+			background-color: $primary-base-mid-light;
+			// color: $grey-100;
 		}
 	}
 }
