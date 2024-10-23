@@ -1,35 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getCategories } from '../../servises/apiCategories';
+import { CategoryWithProducts } from '../../types/helpers.types';
 import { Categories } from '../Categories';
 import { CategoryProducts } from '../CategoryProducts';
 import { Sort } from '../Sort';
 
-const categories = [
-	{ id: 0, name: 'Пирожные' },
-	{ id: 1, name: 'Торты' },
-	{ id: 2, name: 'Кексы' },
-	{ id: 3, name: 'Печенье' },
-	{ id: 4, name: 'Мороженое' },
-	{ id: 5, name: 'Шоколад' },
-	{ id: 6, name: 'Зефир' },
-	{ id: 7, name: 'Карамель' },
-	{ id: 8, name: 'Маршмеллоу' },
-	{ id: 9, name: 'Фруктовый десерт' },
-];
-
-const items = [
-	{
-		id: 0,
-		name: 'Пирожные',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi facilis quis reprehenderit atque fuga cupiditate! Officia est tempore nihil sapiente labore recusandae deserunt consectetur, dignissimos possimus eaque repellendus, perferendis voluptas!',
-		img: 'https://cheese-cake.ru/DesertImg/tartaletka-fistashkovaya-new-4-sht.jpg',
-		price: 300,
-		rating: 4,
-	},
-];
 export const HomePage: React.FC = () => {
-	const [moved, setMoved] = useState(true);
+	const [categories, setCategories] = useState<CategoryWithProducts[]>([]);
 	const [activeCategory, setActiveCategory] = useState(0);
+
+	useEffect(() => {
+		async function fetchProducts() {
+			const data = await getCategories();
+			console.log(data);
+			setCategories(data);
+		}
+		fetchProducts();
+	}, []);
 
 	const onSetActiveCategory = (id: number) => {
 		setActiveCategory(id);
@@ -53,7 +40,7 @@ export const HomePage: React.FC = () => {
 					{categories.map(category => (
 						<CategoryProducts
 							category={category}
-							items={items}
+							items={category.products}
 							key={category.id}
 							onSetActiveCategory={onSetActiveCategory}
 						/>

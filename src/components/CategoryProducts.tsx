@@ -1,15 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useIntersection } from 'react-use';
+import { Product } from '../types/helpers.types';
 import { ProductItem } from './ProductItem';
-
-type Product = {
-	id: number;
-	name: string;
-	description: string;
-	img: string;
-	price: number;
-	rating: number;
-};
 
 interface Props {
 	category: { id: number; name: string };
@@ -24,7 +16,7 @@ export const CategoryProducts: React.FC<Props> = ({
 }) => {
 	const intersectionRef = useRef(null);
 	const intersection = useIntersection(intersectionRef, {
-		threshold: 0.8,
+		threshold: 0.9,
 	});
 
 	useEffect(() => {

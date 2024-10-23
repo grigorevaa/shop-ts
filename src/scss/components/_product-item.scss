@@ -4,8 +4,8 @@
 	display: flex;
 	flex-direction: column;
 	border: 2px solid $primary-base-light;
-	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
-	border-radius: 2rem 2rem 0 0;
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 2rem;
 
 	.info {
 		padding: 1rem;
@@ -50,7 +50,8 @@
 		width: 100%;
 		font-size: 1.6rem;
 		padding: 1rem 2rem;
-		border: 1px solid $primary-base-light;
+		// border: 1px solid $primary-base-light;
+		border-radius: 0 0 2rem 2rem;
 		background-color: $primary-base-light;
 		color: $primary-base-dark;
 
