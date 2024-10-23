@@ -16,7 +16,7 @@ export const CategoryProducts: React.FC<Props> = ({
 }) => {
 	const intersectionRef = useRef(null);
 	const intersection = useIntersection(intersectionRef, {
-		threshold: 0.9,
+		threshold: 0.8,
 	});
 
 	useEffect(() => {

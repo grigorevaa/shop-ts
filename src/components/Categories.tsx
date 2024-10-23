@@ -8,20 +8,14 @@ type TCategory = {
 interface Props {
 	categories: TCategory[];
 	activeCategory: number;
-	onSetActiveCategory: (id: number) => void;
 }
-export const Categories: React.FC<Props> = ({
-	categories,
-	activeCategory,
-	onSetActiveCategory,
-}) => {
+export const Categories: React.FC<Props> = ({ categories, activeCategory }) => {
 	return (
 		<div className="categories">
 			<ul>
 				{categories.map(category => (
 					<a
-						href={`#${category.name}`}
-						onClick={() => onSetActiveCategory(category.id)}
+						href={`/#${category.name}`}
 						className={`${activeCategory === category.id ? 'active' : ''}`}
 						key={category.id}>
 						{category.name}

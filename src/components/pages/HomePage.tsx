@@ -26,11 +26,7 @@ export const HomePage: React.FC = () => {
 		<div className="home">
 			<div className="content-top">
 				<div className="container">
-					<Categories
-						activeCategory={activeCategory}
-						categories={categories}
-						onSetActiveCategory={onSetActiveCategory}
-					/>
+					<Categories activeCategory={activeCategory} categories={categories} />
 					<Sort />
 				</div>
 			</div>
