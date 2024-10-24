@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCategories } from '../../servises/apiCategories';
+import { getCategories } from '../../services/apiCategories';
 import { CategoryWithProducts } from '../../types/helpers.types';
 import { Categories } from '../Categories';
 import { CategoryProducts } from '../CategoryProducts';
@@ -12,15 +12,10 @@ export const HomePage: React.FC = () => {
 	useEffect(() => {
 		async function fetchProducts() {
 			const data = await getCategories();
-			console.log(data);
 			setCategories(data);
 		}
 		fetchProducts();
 	}, []);
-
-	const onSetActiveCategory = (id: number) => {
-		setActiveCategory(id);
-	};
 
 	return (
 		<div className="home">
@@ -38,7 +33,7 @@ export const HomePage: React.FC = () => {
 							category={category}
 							items={category.products}
 							key={category.id}
-							onSetActiveCategory={onSetActiveCategory}
+							onSetActiveCategory={setActiveCategory}
 						/>
 					))}
 				</div>

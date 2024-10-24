@@ -16,14 +16,14 @@ export const CategoryProducts: React.FC<Props> = ({
 }) => {
 	const intersectionRef = useRef(null);
 	const intersection = useIntersection(intersectionRef, {
-		threshold: 0.8,
+		threshold: 0.5,
 	});
 
 	useEffect(() => {
 		if (intersection?.isIntersecting) {
 			onSetActiveCategory(category.id);
 		}
-	}, [intersection?.isIntersecting, category]);
+	}, [onSetActiveCategory, intersection?.isIntersecting, category]);
 
 	return (
 		<div className="category-products" ref={intersectionRef} id={category.name}>
