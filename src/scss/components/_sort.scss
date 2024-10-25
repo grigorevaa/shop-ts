@@ -16,13 +16,14 @@
 
 	&__value {
 		width: 12rem;
-		anchor-name: --myAnchor;
+		anchor-name: --anchorSort;
 	}
 
 	&__popup {
 		position: absolute;
-		position-anchor: --myAnchor;
+		position-anchor: --anchor-sort;
 		width: 20rem;
+
 		margin-top: 1rem;
 		margin-left: 2.1rem;
 		background: #ffffff;

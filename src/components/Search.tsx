@@ -1,8 +1,9 @@
 import { Search as SearchIcon, X } from 'lucide-react';
-import { useState } from 'react';
-import { useDebounce } from 'react-use';
+import { useRef, useState } from 'react';
+import { useClickAway, useDebounce } from 'react-use';
 import { fetchSearchList } from '../redux/search/asyncActions';
 import { useAppDispatch, useAppSelector } from '../redux/store';
+import { SearchItem } from './SearchItem';
 
 export const Search: React.FC = () => {
 	const { items: searchedProducts, status } = useAppSelector(
@@ -10,6 +11,12 @@ export const Search: React.FC = () => {
 	);
 	const dispatch = useAppDispatch();
 	const [searchStr, setSearchStr] = useState('');
+	const [focused, setFocused] = useState(false);
+	const ref = useRef(null);
+
+	useClickAway(ref, () => {
+		setFocused(false);
+	});
 
 	useDebounce(
 		() => {
@@ -19,9 +26,16 @@ export const Search: React.FC = () => {
 		[searchStr],
 	);
 
+	const onSelectItem = () => {
+		setSearchStr('');
+		setFocused(false);
+	};
+
 	return (
 		<>
-			<div className="search-bar">
+			{focused && <div className="search-blackout" />}
+
+			<div className="search-bar" ref={ref}>
 				<div className="icon">
 					<SearchIcon width={22} height={22} />
 				</div>
@@ -30,11 +44,22 @@ export const Search: React.FC = () => {
 					placeholder="Поиск..."
 					value={searchStr}
 					onChange={e => setSearchStr(e.target.value)}
+					onFocus={() => setFocused(true)}
 				/>
-				<button className="clear-button">
-					<X width={22} height={22} />
-				</button>
+				{searchStr && (
+					<button className="clear-button" onClick={() => setSearchStr('')}>
+						<X width={22} height={22} />
+					</button>
+				)}
 			</div>
+
+			{searchedProducts.length > 0 && (
+				<div className={`search-popup${focused ? '-visible' : ''}`}>
+					{searchedProducts.slice(0, 5).map(item => (
+						<SearchItem key={item.id} item={item} onSelectItem={onSelectItem} />
+					))}
+				</div>
+			)}
 		</>
 	);
 };
