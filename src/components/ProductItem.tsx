@@ -1,27 +1,23 @@
 import { Star } from 'lucide-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Product } from '../redux/types';
 
 interface Props {
-	name: string;
-	description: string;
-	img: string;
-	rating: number;
-	price: number;
+	product: Product;
 }
 export const ProductItem: React.FC<Props> = ({
-	name,
-	description,
-	img,
-	rating,
-	price,
+	product: { id, name, description, img, rating, price },
 }) => {
 	return (
 		<div className="product-item">
-			<img src={img} alt={`of ${name}`} />
-			<div className="info">
-				<div className="name">{name}</div>
-				<div className="description">{description}</div>
-			</div>
+			<Link to={`/product/${id}`}>
+				<img src={img} alt={`of ${name}`} />
+				<div className="info">
+					<div className="name">{name}</div>
+					<div className="description">{description}</div>
+				</div>
+			</Link>
 
 			<div className="price-rating">
 				<div className="rating">

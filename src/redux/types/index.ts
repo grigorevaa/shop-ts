@@ -1,3 +1,9 @@
+export type CategoryWithProducts = {
+	id: number;
+	name: string;
+	products: Product[];
+};
+
 export type Product = {
 	id: number;
 	name: string;
@@ -13,12 +19,17 @@ export enum Status {
 	ERROR = 'error',
 }
 
-export interface ProductsSliceState {
+export interface SearchSliceState {
 	items: Product[];
 	status: Status;
 }
 
-export interface SearchSliceState {
-	items: Product[];
+export interface ProductSliceState {
+	product: Product | null;
+	status: Status;
+}
+
+export interface CategoriesSliceState {
+	categories: CategoryWithProducts[];
 	status: Status;
 }

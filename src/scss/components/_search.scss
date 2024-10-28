@@ -60,11 +60,11 @@
 }
 
 .search-popup {
-	inset: unset;
-	position-anchor: --anchor-search;
+	// position-anchor: --anchor-search;
 	position: absolute;
 	top: 8rem;
-	left: 66.4rem;
+	// left: 66.4rem;
+	// left: 38%;
 
 	display: flex;
 	flex-direction: column;
@@ -85,5 +85,5 @@
 	@extend .search-popup;
 	visibility: visible;
 	opacity: 100;
-	top: 6rem;
+	top: 5rem;
 }

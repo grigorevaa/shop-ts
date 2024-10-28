@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useIntersection } from 'react-use';
-import { Product } from '../types/helpers.types';
+import { Product } from '../redux/types';
 import { ProductItem } from './ProductItem';
 
 interface Props {
@@ -26,20 +26,16 @@ export const CategoryProducts: React.FC<Props> = ({
 	}, [onSetActiveCategory, intersection?.isIntersecting, category]);
 
 	return (
-		<div className="category-products" ref={intersectionRef} id={category.name}>
+		<section
+			className="category-products"
+			ref={intersectionRef}
+			id={category.name}>
 			<h1 className="title">{category.name}</h1>
 			<div className="products">
-				{items.map((item, id) => (
-					<ProductItem
-						key={id}
-						name={item.name}
-						description={item.description}
-						img={item.img}
-						rating={item.rating}
-						price={item.price}
-					/>
+				{items.map(item => (
+					<ProductItem product={item} key={item.id} />
 				))}
 			</div>
-		</div>
+		</section>
 	);
 };

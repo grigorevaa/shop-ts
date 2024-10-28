@@ -13,3 +13,18 @@ export const getSearchedProducts = async (searchStr: string) => {
 
 	return data;
 };
+
+export const getProduct = async (id: number) => {
+	const { data, error } = await supabase
+		.from('products')
+		.select()
+		.eq('id', id)
+		.single();
+
+	if (error) {
+		console.log(error);
+		throw new Error('Cannot load product with id: ' + id);
+	}
+
+	return data;
+};

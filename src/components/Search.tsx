@@ -51,15 +51,19 @@ export const Search: React.FC = () => {
 						<X width={22} height={22} />
 					</button>
 				)}
-			</div>
 
-			{searchedProducts.length > 0 && (
-				<div className={`search-popup${focused ? '-visible' : ''}`}>
-					{searchedProducts.slice(0, 5).map(item => (
-						<SearchItem key={item.id} item={item} onSelectItem={onSelectItem} />
-					))}
-				</div>
-			)}
+				{searchedProducts.length > 0 && (
+					<div className={`search-popup${focused ? '-visible' : ''}`}>
+						{searchedProducts.slice(0, 5).map(item => (
+							<SearchItem
+								key={item.id}
+								item={item}
+								onSelectItem={onSelectItem}
+							/>
+						))}
+					</div>
+				)}
+			</div>
 		</>
 	);
 };

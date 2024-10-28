@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
-import { getCategories } from '../../services/apiCategories';
-import { CategoryWithProducts } from '../../types/helpers.types';
+import { fetchCategories } from '../../redux/categories/asyncActions';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { Categories } from '../Categories';
 import { CategoryProducts } from '../CategoryProducts';
 import { Sort } from '../Sort';
 
 export const HomePage: React.FC = () => {
-	const [categories, setCategories] = useState<CategoryWithProducts[]>([]);
+	// const [categories, setCategories] = useState<CategoryWithProducts[]>([]);
+	const dispatch = useAppDispatch();
+	const { categories, status } = useAppSelector(state => state.categories);
 	const [activeCategory, setActiveCategory] = useState(0);
 
 	useEffect(() => {
-		async function fetchProducts() {
-			const data = await getCategories();
-			setCategories(data);
-		}
-		fetchProducts();
+		dispatch(fetchCategories());
 	}, []);
 
 	return (
