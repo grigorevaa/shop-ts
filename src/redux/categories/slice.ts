@@ -4,7 +4,7 @@ import { fetchCategories } from './asyncActions';
 
 const initialState: CategoriesSliceState = {
 	categories: [],
-	status: Status.LOADING,
+	status: Status.IDLE,
 };
 
 const categoriesSlice = createSlice({

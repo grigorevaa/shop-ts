@@ -4,8 +4,12 @@ import { getCategories } from './../../services/apiCategories';
 export const fetchCategories = createAsyncThunk(
 	'categories/fetchCategories',
 
-	async () => {
-		const data = await getCategories();
-		return data;
+	async (arg, thunkAPI) => {
+		try {
+			const data = await getCategories();
+			return data;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
 	},
 );

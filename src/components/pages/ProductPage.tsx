@@ -12,8 +12,16 @@ export const ProductPage: React.FC<Props> = () => {
 	const { product, status } = useAppSelector(state => state.product);
 	const dispatch = useAppDispatch();
 
+	const getProduct = async (id: number) => {
+		try {
+			await dispatch(fetchProduct(id)).unwrap();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
-		dispatch(fetchProduct(Number(id)));
+		getProduct(Number(id));
 	}, [id]);
 
 	if (status === 'loading') {
@@ -52,7 +60,7 @@ export const ProductPage: React.FC<Props> = () => {
 								</div>
 
 								<div className="product-page__add-to-cart">
-									<div>counter</div>
+									{/* <div>counter</div> */}
 									<button className="primary-button">В корзину</button>
 								</div>
 							</div>
@@ -60,9 +68,9 @@ export const ProductPage: React.FC<Props> = () => {
 					)}
 				</div>
 
-				<div className="product-page__content-bottom">
+				{/* <div className="product-page__content-bottom">
 					<h2>Отзывы</h2>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

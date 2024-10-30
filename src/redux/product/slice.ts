@@ -4,7 +4,7 @@ import { fetchProduct } from './asyncActions';
 
 const initialState: ProductSliceState = {
 	product: null,
-	status: Status.LOADING,
+	status: Status.IDLE,
 };
 
 const productSlice = createSlice({

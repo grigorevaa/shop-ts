@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import categoriesReducer from './categories/slice';
 import productReducer from './product/slice';
 import searchReducer from './search/slice';
+import usersReducer from './users/slice';
 
 export const store = configureStore({
 	reducer: {
 		search: searchReducer,
 		product: productReducer,
 		categories: categoriesReducer,
+		users: usersReducer,
 	},
 });
 

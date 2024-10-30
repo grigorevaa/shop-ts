@@ -1,0 +1,56 @@
+@use '../abstracts' as *;
+
+.form-input {
+	margin-top: 1rem;
+	&__label {
+		font-size: 1.6rem;
+		line-height: 2rem;
+	}
+
+	&__input {
+		position: relative;
+
+		input {
+			width: 100%;
+			padding: 1rem;
+			border: 1px solid $grey-300;
+			border-radius: 1rem;
+			font-size: 1.6rem;
+			line-height: 2rem;
+			padding-right: 4rem;
+			transition: all 0.3s ease;
+
+			&:focus {
+				border: 1px solid $grey-600;
+			}
+		}
+	}
+
+	&__clear {
+		background: none;
+		position: absolute;
+		right: 1rem;
+		top: 3.1rem;
+
+		.icon {
+			color: $grey-300;
+			transition: all 0.3s ease;
+			width: 2rem;
+			height: 2rem;
+
+			&:hover {
+				color: $grey-600;
+			}
+		}
+	}
+
+	&__error {
+		font-size: 1.4rem;
+		color: red;
+	}
+
+	&__error-hidden {
+		@extend .form-input__error;
+		visibility: hidden;
+	}
+}

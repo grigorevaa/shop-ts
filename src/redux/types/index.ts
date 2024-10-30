@@ -1,3 +1,5 @@
+import { User } from '@supabase/supabase-js';
+
 export type CategoryWithProducts = {
 	id: number;
 	name: string;
@@ -14,6 +16,7 @@ export type Product = {
 };
 
 export enum Status {
+	IDLE = 'idle',
 	LOADING = 'loading',
 	SUCCESS = 'success',
 	ERROR = 'error',
@@ -31,5 +34,10 @@ export interface ProductSliceState {
 
 export interface CategoriesSliceState {
 	categories: CategoryWithProducts[];
+	status: Status;
+}
+
+export interface UsersSliceState {
+	user: User | null;
 	status: Status;
 }

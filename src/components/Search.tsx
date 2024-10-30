@@ -19,8 +19,8 @@ export const Search: React.FC = () => {
 	});
 
 	useDebounce(
-		() => {
-			dispatch(fetchSearchList(searchStr));
+		async () => {
+			await dispatch(fetchSearchList(searchStr));
 		},
 		500,
 		[searchStr],

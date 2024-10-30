@@ -4,7 +4,7 @@ import { fetchSearchList } from './asyncActions';
 
 const initialState: SearchSliceState = {
 	items: [],
-	status: Status.LOADING,
+	status: Status.IDLE,
 };
 
 const searchSlice = createSlice({

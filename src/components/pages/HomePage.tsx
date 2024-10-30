@@ -11,8 +11,16 @@ export const HomePage: React.FC = () => {
 	const { categories, status } = useAppSelector(state => state.categories);
 	const [activeCategory, setActiveCategory] = useState(0);
 
+	const getCategories = async () => {
+		try {
+			await dispatch(fetchCategories());
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
-		dispatch(fetchCategories());
+		getCategories();
 	}, []);
 
 	return (
