@@ -1,13 +1,26 @@
 import { ShoppingCart, User } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../redux/store';
+import { logout } from '../redux/auth/asyncActions';
+import { getUser } from '../redux/auth/slice';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import { useGetUserQuery } from '../services/authService';
 import { Modal } from './Modal';
 import { Login } from './forms/Login';
 import { Registration } from './forms/Registration';
 
 export const ProfileAndCart: React.FC = () => {
-	const { user } = useAppSelector(state => state.users);
+	const { user } = useAppSelector(state => state.auth);
+	const dispatch = useAppDispatch();
+
+	const { data, isFetching } = useGetUserQuery('userDetails', {
+		pollingInterval: 900000,
+	});
+
+	useEffect(() => {
+		if (data) dispatch(getUser(data));
+	}, [data, dispatch]);
+
 	const [showModal, setShowModal] = React.useState(!true);
 	const [type, setType] = useState<'login' | 'registration'>('login');
 
@@ -21,7 +34,18 @@ export const ProfileAndCart: React.FC = () => {
 
 	return (
 		<div className="profile-and-cart">
-			{!user ? (
+			{isFetching ? (
+				`Fetching your profile...`
+			) : user !== null ? (
+				<Link to="/profile">
+					<button className="primary-button">
+						<div className="icon">
+							<User size={20} />
+						</div>
+						{user.user_metadata.firstName}
+					</button>
+				</Link>
+			) : (
 				<button
 					className="secondary-button"
 					onClick={() => setShowModal(!showModal)}>
@@ -30,15 +54,6 @@ export const ProfileAndCart: React.FC = () => {
 					</div>
 					Войти
 				</button>
-			) : (
-				<Link to="/profile">
-					<button className="primary-button">
-						<div className="icon">
-							<User size={20} />
-						</div>
-						{user.user_metadata.full_name}
-					</button>
-				</Link>
 			)}
 			{showModal && (
 				<Modal
@@ -55,14 +70,18 @@ export const ProfileAndCart: React.FC = () => {
 					)}
 				</Modal>
 			)}
-			<Link to="/cart">
-				<button className="primary-button">
-					<div className="icon">
-						<ShoppingCart size={20} />
-					</div>
-					Корзина
-				</button>
-			</Link>
+			{/* <Link to="/cart"> */}
+			<button
+				className="primary-button"
+				onClick={() => {
+					dispatch(logout());
+				}}>
+				<div className="icon">
+					<ShoppingCart size={20} />
+				</div>
+				Корзина
+			</button>
+			{/* </Link> */}
 		</div>
 	);
 };

@@ -1,8 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { signup } from '../../redux/auth/asyncActions';
 import { useAppDispatch } from '../../redux/store';
-import { signup } from '../../redux/users/asyncActions';
 import { FormInput } from './FormInput';
 import { registerSchema, TRegisterValues } from './schemas';
 

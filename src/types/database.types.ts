@@ -11,19 +11,16 @@ export type Database = {
     Tables: {
       carts: {
         Row: {
-          created_at: string
           id: number
           totalPrice: number | null
           userId: string | null
         }
         Insert: {
-          created_at?: string
           id?: number
           totalPrice?: number | null
           userId?: string | null
         }
         Update: {
-          created_at?: string
           id?: number
           totalPrice?: number | null
           userId?: string | null

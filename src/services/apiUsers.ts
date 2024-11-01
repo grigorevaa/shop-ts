@@ -30,6 +30,31 @@ export const signup = async (
 		},
 	});
 
+	if (!error && data) {
+		await supabase
+			.from('carts')
+			.insert([{ totalPrice: 0, userId: data.user?.id }])
+			.select();
+	}
+
+	if (error) {
+		throw new Error(error.message);
+	}
+
+	return data;
+};
+
+export const logout = async () => {
+	const { error } = await supabase.auth.signOut();
+
+	if (error) {
+		throw new Error(error.message);
+	}
+};
+
+export const getUser = async () => {
+	const { data, error } = await supabase.auth.getUser();
+
 	if (error) {
 		throw new Error(error.message);
 	}

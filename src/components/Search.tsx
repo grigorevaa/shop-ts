@@ -6,9 +6,7 @@ import { useAppDispatch, useAppSelector } from '../redux/store';
 import { SearchItem } from './SearchItem';
 
 export const Search: React.FC = () => {
-	const { items: searchedProducts, status } = useAppSelector(
-		state => state.search,
-	);
+	const { items: searchedProducts } = useAppSelector(state => state.search);
 	const dispatch = useAppDispatch();
 	const [searchStr, setSearchStr] = useState('');
 	const [focused, setFocused] = useState(false);

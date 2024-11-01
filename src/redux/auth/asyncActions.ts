@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
 	login as apiLogin,
+	logout as apiLogout,
 	signup as apiSignup,
 } from '../../services/apiUsers';
 
 export const login = createAsyncThunk(
-	'users/login',
+	'auth/login',
 
 	async (
 		{ email, password }: { email: string; password: string },
@@ -21,7 +22,7 @@ export const login = createAsyncThunk(
 );
 
 export const signup = createAsyncThunk(
-	'users/signup',
+	'auth/signup',
 	async (
 		{
 			email,
@@ -44,3 +45,11 @@ export const signup = createAsyncThunk(
 		}
 	},
 );
+
+export const logout = createAsyncThunk('auth/logout', async (arg, thunkAPI) => {
+	try {
+		await apiLogout();
+	} catch (error) {
+		return thunkAPI.rejectWithValue(error);
+	}
+});
