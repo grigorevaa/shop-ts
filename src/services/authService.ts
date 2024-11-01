@@ -1,22 +1,22 @@
-import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import supabase from './supabase';
+// import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
+// import supabase from './supabase';
 
-export const authApi = createApi({
-	reducerPath: 'authApi',
-	baseQuery: fakeBaseQuery(),
-	endpoints: builder => ({
-		getUser: builder.query({
-			queryFn: async () => {
-				const { data, error } = await supabase.auth.getUser();
+// export const authApi = createApi({
+// 	reducerPath: 'authApi',
+// 	baseQuery: fakeBaseQuery(),
+// 	endpoints: builder => ({
+// 		getUser: builder.query({
+// 			queryFn: async () => {
+// 				const { data, error } = await supabase.auth.getUser();
 
-				if (error) {
-					throw new Error(error.message);
-				}
+// 				if (error) {
+// 					throw new Error(error.message);
+// 				}
 
-				return { data };
-			},
-		}),
-	}),
-});
+// 				return { data };
+// 			},
+// 		}),
+// 	}),
+// });
 
-export const { useGetUserQuery } = authApi;
+// export const { useGetUserQuery } = authApi;

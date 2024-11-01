@@ -1,8 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Status, UsersSliceState } from '../types';
-import { login, logout, signup } from './asyncActions';
+import { getUser, login, logout, signup } from './asyncActions';
+
+// const user = JSON.parse(
+// 	localStorage.getItem('sb-dhovfbhtqffidekpspgt-auth-token') || '{}',
+// ).user;
+// console.log(user);
 
 const initialState: UsersSliceState = {
+	// user: user ? user : null,
 	user: null,
 	status: Status.IDLE,
 };
@@ -10,11 +16,7 @@ const initialState: UsersSliceState = {
 const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {
-		getUser(state, action) {
-			state.user = action.payload.user;
-		},
-	},
+	reducers: {},
 	extraReducers: builder => {
 		builder.addCase(login.pending, (state, action) => {
 			state.user = null;
@@ -53,8 +55,20 @@ const authSlice = createSlice({
 		builder.addCase(logout.rejected, (state, action) => {
 			state.status = Status.ERROR;
 		});
+		builder.addCase(getUser.pending, (state, action) => {
+			state.status = Status.LOADING;
+		});
+
+		builder.addCase(getUser.fulfilled, (state, action) => {
+			state.user = action.payload;
+			state.status = Status.SUCCESS;
+		});
+
+		builder.addCase(getUser.rejected, (state, action) => {
+			state.user = null;
+			state.status = Status.ERROR;
+		});
 	},
 });
 
 export default authSlice.reducer;
-export const { getUser } = authSlice.actions;

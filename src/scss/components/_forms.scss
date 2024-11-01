@@ -35,6 +35,12 @@
 		&:hover {
 			background-color: $primary-base-dark;
 		}
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+			background-color: $grey-400;
+		}
 	}
 
 	&__content-registration {

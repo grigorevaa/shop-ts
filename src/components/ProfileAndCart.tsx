@@ -1,28 +1,25 @@
-import { ShoppingCart, User } from 'lucide-react';
+import { Loader, ShoppingCart, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../redux/auth/asyncActions';
-import { getUser } from '../redux/auth/slice';
+import { getUser, logout } from '../redux/auth/asyncActions';
+// import { getUser } from '../redux/auth/slice';
 import { useAppDispatch, useAppSelector } from '../redux/store';
-import { useGetUserQuery } from '../services/authService';
+// import { useGetUserQuery } from '../services/authService';
+import { CircularProgress } from '@mui/material';
 import { Modal } from './Modal';
 import { Login } from './forms/Login';
 import { Registration } from './forms/Registration';
 
 export const ProfileAndCart: React.FC = () => {
-	const { user } = useAppSelector(state => state.auth);
+	const { user, status } = useAppSelector(state => state.auth);
 	const dispatch = useAppDispatch();
-
-	const { data, isFetching } = useGetUserQuery('userDetails', {
-		pollingInterval: 900000,
-	});
-
-	useEffect(() => {
-		if (data) dispatch(getUser(data));
-	}, [data, dispatch]);
 
 	const [showModal, setShowModal] = React.useState(!true);
 	const [type, setType] = useState<'login' | 'registration'>('login');
+
+	useEffect(() => {
+		dispatch(getUser());
+	}, [dispatch]);
 
 	const onCloseModal = () => {
 		setShowModal(!showModal);
@@ -34,9 +31,13 @@ export const ProfileAndCart: React.FC = () => {
 
 	return (
 		<div className="profile-and-cart">
-			{isFetching ? (
-				`Fetching your profile...`
-			) : user !== null ? (
+			{status === 'loading' ? (
+				<button className="loading-button" disabled>
+					<div className="icon">
+						<CircularProgress size={18} color="inherit" />
+					</div>
+				</button>
+			) : user ? (
 				<Link to="/profile">
 					<button className="primary-button">
 						<div className="icon">
@@ -55,6 +56,7 @@ export const ProfileAndCart: React.FC = () => {
 					Войти
 				</button>
 			)}
+
 			{showModal && (
 				<Modal
 					onCloseModal={onCloseModal}

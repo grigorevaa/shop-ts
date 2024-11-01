@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import CircularProgress from '@mui/material/CircularProgress';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { login } from '../../redux/auth/asyncActions';
@@ -47,7 +48,11 @@ export const Login: React.FC<Props> = ({ onCloseModal }) => {
 				<button
 					className="primary-button"
 					disabled={form.formState.isSubmitting}>
-					Войти
+					{form.formState.isSubmitting ? (
+						<CircularProgress size={18} color="inherit" />
+					) : (
+						'Войти'
+					)}
 				</button>
 			</form>
 		</FormProvider>

@@ -1,14 +1,30 @@
+@use '../abstracts' as *;
+
 .profile-and-cart {
 	display: flex;
 	gap: 1rem;
 
 	button {
-		padding: 0.8rem 1rem;
+		padding: 1rem 1rem;
 		border-radius: 1.2rem;
 		font-size: 1.6rem;
 	}
 
 	.icon {
 		margin-right: 0.6rem;
+	}
+
+	.secondary-button {
+		width: 13rem;
+	}
+
+	.loading-button {
+		.icon {
+			color: $grey-100;
+			display: flex;
+			align-items: center;
+			margin-right: 0;
+		}
+		width: 13rem;
 	}
 }
