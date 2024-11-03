@@ -1,11 +1,9 @@
-import { Loader, ShoppingCart, User } from 'lucide-react';
+import { CircularProgress } from '@mui/material';
+import { ShoppingCart, User } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUser, logout } from '../redux/auth/asyncActions';
-// import { getUser } from '../redux/auth/slice';
+import { getUser } from '../redux/auth/asyncActions';
 import { useAppDispatch, useAppSelector } from '../redux/store';
-// import { useGetUserQuery } from '../services/authService';
-import { CircularProgress } from '@mui/material';
 import { Modal } from './Modal';
 import { Login } from './forms/Login';
 import { Registration } from './forms/Registration';
@@ -17,9 +15,17 @@ export const ProfileAndCart: React.FC = () => {
 	const [showModal, setShowModal] = React.useState(!true);
 	const [type, setType] = useState<'login' | 'registration'>('login');
 
-	useEffect(() => {
-		dispatch(getUser());
-	}, [dispatch]);
+	// const getUserHeader = async () => {
+	// 	try {
+	// 		await dispatch(getUser()).unwrap();
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	getUserHeader();
+	// }, [dispatch]);
 
 	const onCloseModal = () => {
 		setShowModal(!showModal);
@@ -72,18 +78,14 @@ export const ProfileAndCart: React.FC = () => {
 					)}
 				</Modal>
 			)}
-			{/* <Link to="/cart"> */}
-			<button
-				className="primary-button"
-				onClick={() => {
-					dispatch(logout());
-				}}>
-				<div className="icon">
-					<ShoppingCart size={20} />
-				</div>
-				Корзина
-			</button>
-			{/* </Link> */}
+			<Link to="/cart">
+				<button className="primary-button">
+					<div className="icon">
+						<ShoppingCart size={20} />
+					</div>
+					Корзина
+				</button>
+			</Link>
 		</div>
 	);
 };

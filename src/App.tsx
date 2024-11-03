@@ -7,6 +7,8 @@ import { CartPage } from './components/pages/CartPage';
 import { HomePage } from './components/pages/HomePage';
 import { NotFound } from './components/pages/NotFound';
 import { ProductPage } from './components/pages/ProductPage';
+import { ProfilePage } from './components/pages/ProfilePage';
+import { ProtectedRoute } from './components/pages/ProtectedRoute';
 import { store } from './redux/store';
 import './scss/style.scss';
 
@@ -19,7 +21,15 @@ function App() {
 						<Route path="/" element={<HomePage />} />
 						<Route path="/product/:id" element={<ProductPage />} />
 						<Route path="/cart" element={<CartPage />} />
-						<Route path="/profile" element={<CartPage />} />
+						<Route
+							path="/profile"
+							element={
+								<ProtectedRoute>
+									<ProfilePage />
+								</ProtectedRoute>
+							}
+						/>
+						<Route path="/not-auth" element={<NotFound />} />
 					</Route>
 					<Route path="*" element={<NotFound />} />
 				</Routes>

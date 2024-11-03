@@ -4,6 +4,7 @@ import {
 	login as apiLogin,
 	logout as apiLogout,
 	signup as apiSignup,
+	updateUser as apiUpdateUser,
 } from '../../services/apiUsers';
 
 export const login = createAsyncThunk(
@@ -60,6 +61,29 @@ export const getUser = createAsyncThunk(
 	async (arg, thunkAPI) => {
 		try {
 			const data = await apiGetUser();
+			return data;
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error);
+		}
+	},
+);
+
+export const updateUser = createAsyncThunk(
+	'auth/updateUser',
+	async (
+		{
+			firstName,
+			lastName,
+			password,
+		}: {
+			firstName: string;
+			lastName: string;
+			password?: string;
+		},
+		thunkAPI,
+	) => {
+		try {
+			const data = await apiUpdateUser(firstName, lastName, password);
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error);

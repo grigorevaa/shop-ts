@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import CircularProgress from '@mui/material/CircularProgress';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux/auth/asyncActions';
 import { useAppDispatch } from '../../redux/store';
 import { FormInput } from './FormInput';
@@ -13,6 +14,7 @@ interface Props {
 
 export const Login: React.FC<Props> = ({ onCloseModal }) => {
 	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
 
 	const form = useForm<TLoginValues>({
 		resolver: zodResolver(loginSchema),
@@ -27,6 +29,7 @@ export const Login: React.FC<Props> = ({ onCloseModal }) => {
 			await dispatch(login(data)).unwrap();
 			toast.success('Вы успешно вошли в свой аккаунт');
 			onCloseModal();
+			navigate('/');
 		} catch (error) {
 			console.log(error);
 			toast.error('Неправильный email или пароль');
@@ -44,16 +47,16 @@ export const Login: React.FC<Props> = ({ onCloseModal }) => {
 
 					<FormInput label="Email" name="email" />
 					<FormInput label="Password" name="password" type="password" />
+					<button
+						className="primary-button"
+						disabled={form.formState.isSubmitting}>
+						{form.formState.isSubmitting ? (
+							<CircularProgress size={18} color="inherit" />
+						) : (
+							'Войти'
+						)}
+					</button>
 				</div>
-				<button
-					className="primary-button"
-					disabled={form.formState.isSubmitting}>
-					{form.formState.isSubmitting ? (
-						<CircularProgress size={18} color="inherit" />
-					) : (
-						'Войти'
-					)}
-				</button>
 			</form>
 		</FormProvider>
 	);

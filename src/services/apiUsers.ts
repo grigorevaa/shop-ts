@@ -10,6 +10,8 @@ export const login = async (email: string, password: string) => {
 		throw new Error(error.message);
 	}
 
+	localStorage.setItem('user', JSON.stringify(data.user));
+
 	return data;
 };
 
@@ -46,7 +48,7 @@ export const signup = async (
 
 export const logout = async () => {
 	const { error } = await supabase.auth.signOut();
-
+	localStorage.removeItem('user');
 	if (error) {
 		throw new Error(error.message);
 	}
@@ -63,4 +65,32 @@ export const getUser = async () => {
 	}
 
 	return data?.user;
+};
+
+export const updateUser = async (
+	firstName: string,
+	lastName: string,
+	password?: string,
+) => {
+	const updateObj = {
+		password,
+		data: {
+			firstName,
+			lastName,
+		},
+	};
+
+	if (!password) {
+		delete updateObj.password;
+	}
+
+	const { error: updateError } = await supabase.auth.updateUser(updateObj);
+	const { data, error: getError } = await supabase.auth.getUser();
+	localStorage.setItem('user', JSON.stringify(data.user));
+
+	if (updateError || getError) {
+		throw new Error(updateError?.message || getError?.message);
+	}
+
+	return data;
 };

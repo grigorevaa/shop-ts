@@ -1,15 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Status, UsersSliceState } from '../types';
-import { getUser, login, logout, signup } from './asyncActions';
+import { AuthSliceState, Status } from '../types';
+import { getUser, login, logout, signup, updateUser } from './asyncActions';
 
-// const user = JSON.parse(
-// 	localStorage.getItem('sb-dhovfbhtqffidekpspgt-auth-token') || '{}',
-// ).user;
-// console.log(user);
+const user = JSON.parse(localStorage.getItem('user') as string);
 
-const initialState: UsersSliceState = {
-	// user: user ? user : null,
-	user: null,
+const initialState: AuthSliceState = {
+	user: user ? user : null,
 	status: Status.IDLE,
 };
 
@@ -51,7 +47,6 @@ const authSlice = createSlice({
 			state.user = null;
 			state.status = Status.SUCCESS;
 		});
-
 		builder.addCase(logout.rejected, (state, action) => {
 			state.status = Status.ERROR;
 		});
@@ -63,8 +58,19 @@ const authSlice = createSlice({
 			state.user = action.payload;
 			state.status = Status.SUCCESS;
 		});
-
 		builder.addCase(getUser.rejected, (state, action) => {
+			state.user = null;
+			state.status = Status.ERROR;
+		});
+
+		builder.addCase(updateUser.pending, (state, action) => {
+			state.status = Status.LOADING;
+		});
+		builder.addCase(updateUser.fulfilled, (state, action) => {
+			state.user = action.payload.user;
+			state.status = Status.SUCCESS;
+		});
+		builder.addCase(updateUser.rejected, (state, action) => {
 			state.user = null;
 			state.status = Status.ERROR;
 		});

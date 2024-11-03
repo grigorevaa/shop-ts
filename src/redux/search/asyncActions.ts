@@ -7,6 +7,7 @@ export const fetchSearchList = createAsyncThunk(
 	async (searchStr: string, thunkAPI) => {
 		try {
 			const data = await getSearchedProducts(searchStr);
+
 			return data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error);

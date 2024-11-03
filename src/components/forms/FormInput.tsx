@@ -5,9 +5,15 @@ interface Props {
 	label: string;
 	name: string;
 	type?: string;
+	disabled?: boolean;
 }
 
-export const FormInput: React.FC<Props> = ({ label, name, type = 'text' }) => {
+export const FormInput: React.FC<Props> = ({
+	label,
+	name,
+	type = 'text',
+	disabled = false,
+}) => {
 	const {
 		register,
 		watch,
@@ -26,8 +32,8 @@ export const FormInput: React.FC<Props> = ({ label, name, type = 'text' }) => {
 		<div className="form-input">
 			<div className={'form-input__input'}>
 				<p className="form-input__label">{label}</p>
-				<input {...register(name)} type={type} />
-				{value && (
+				<input {...register(name)} type={type} disabled={disabled} />
+				{value && !disabled && (
 					<button className="form-input__clear" onClick={onClickClear}>
 						<X className="icon" />
 					</button>

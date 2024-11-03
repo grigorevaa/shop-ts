@@ -1,4 +1,4 @@
-import { Session, User } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 
 export type CategoryWithProducts = {
 	id: number;
@@ -37,7 +37,7 @@ export interface CategoriesSliceState {
 	status: Status;
 }
 
-export interface UsersSliceState {
+export interface AuthSliceState {
 	user: User | null;
 	status: Status;
 }

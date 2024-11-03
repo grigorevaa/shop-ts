@@ -47,33 +47,33 @@ export const Registration: React.FC<Props> = ({ onChangeType }) => {
 	return (
 		<FormProvider {...form}>
 			<form className="form" onSubmit={form.handleSubmit(onSubmit)}>
-				<div className="form__content-registration">
+				<div className="form__content">
 					<div className="form__header">
 						<h3 className="form__title">Регистрация</h3>
 						<p className="form__subtitle">
 							Введите свои данные, чтобы создать аккаунт
 						</p>
 					</div>
-
 					<FormInput label="Email" name="email" />
 					<FormInput label="Имя" name="firstName" />
 					<FormInput label="Фамилия" name="lastName" />
 					<FormInput label="Пароль" name="password" type="password" />
 					<FormInput
-						label="Подтвердите пароль"
+						label="Повторите пароль"
 						name="confirmPassword"
 						type="password"
 					/>
+
+					<button
+						className="primary-button"
+						disabled={form.formState.isSubmitting}>
+						{form.formState.isSubmitting ? (
+							<CircularProgress size={18} color="inherit" />
+						) : (
+							'Войти'
+						)}
+					</button>
 				</div>
-				<button
-					className="primary-button"
-					disabled={form.formState.isSubmitting}>
-					{form.formState.isSubmitting ? (
-						<CircularProgress size={18} color="inherit" />
-					) : (
-						'Войти'
-					)}
-				</button>
 			</form>
 		</FormProvider>
 	);
