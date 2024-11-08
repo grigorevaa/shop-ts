@@ -70,7 +70,7 @@ export const Registration: React.FC<Props> = ({ onChangeType }) => {
 						{form.formState.isSubmitting ? (
 							<CircularProgress size={18} color="inherit" />
 						) : (
-							'Войти'
+							'Создать аккаунт'
 						)}
 					</button>
 				</div>

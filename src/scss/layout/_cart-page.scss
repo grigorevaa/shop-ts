@@ -1,2 +1,27 @@
+@use '../abstracts' as *;
+
 .cart-page {
+	.container {
+		display: flex;
+		justify-content: space-between;
+		gap: 2rem;
+		margin-top: 4rem;
+	}
+
+	.cart-page__items {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		border: 1px solid $grey-200;
+		height: fit-content;
+		box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+		border-radius: 1.2rem;
+		width: 100%;
+		padding: 3rem;
+	}
+
+	.cart-page__title {
+		font-size: 3.2rem;
+		font-weight: 500;
+	}
 }

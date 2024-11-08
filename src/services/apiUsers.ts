@@ -10,7 +10,7 @@ export const login = async (email: string, password: string) => {
 		throw new Error(error.message);
 	}
 
-	localStorage.setItem('user', JSON.stringify(data.user));
+	// localStorage.setItem('user', JSON.stringify(data.user));
 
 	return data;
 };
@@ -21,7 +21,7 @@ export const signup = async (
 	firstName: string,
 	lastName: string,
 ) => {
-	const { data, error } = await supabase.auth.signUp({
+	const { data, error: errorSignUp } = await supabase.auth.signUp({
 		email,
 		password,
 		options: {
@@ -32,15 +32,17 @@ export const signup = async (
 		},
 	});
 
-	if (!error && data) {
-		await supabase
-			.from('carts')
-			.insert([{ totalPrice: 0, userId: data.user?.id }])
-			.select();
+	if (errorSignUp) {
+		throw new Error(errorSignUp.message);
 	}
 
-	if (error) {
-		throw new Error(error.message);
+	const { error: errorCart } = await supabase
+		.from('cart')
+		.insert([{ userId: data.user?.id }])
+		.select();
+
+	if (errorCart) {
+		throw new Error(errorCart.message);
 	}
 
 	return data;
@@ -48,7 +50,7 @@ export const signup = async (
 
 export const logout = async () => {
 	const { error } = await supabase.auth.signOut();
-	localStorage.removeItem('user');
+	// localStorage.removeItem('user');
 	if (error) {
 		throw new Error(error.message);
 	}

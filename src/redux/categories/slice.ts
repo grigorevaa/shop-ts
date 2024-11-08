@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CategoriesSliceState, Status } from '../types';
-import { fetchCategories } from './asyncActions';
+import { getCategories } from './asyncActions';
 
 const initialState: CategoriesSliceState = {
 	categories: [],
@@ -12,15 +12,15 @@ const categoriesSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: builder => {
-		builder.addCase(fetchCategories.pending, (state, action) => {
+		builder.addCase(getCategories.pending, (state, action) => {
 			state.status = Status.LOADING;
 			state.categories = [];
 		});
-		builder.addCase(fetchCategories.fulfilled, (state, action) => {
+		builder.addCase(getCategories.fulfilled, (state, action) => {
 			state.categories = action.payload;
 			state.status = Status.SUCCESS;
 		});
-		builder.addCase(fetchCategories.rejected, (state, action) => {
+		builder.addCase(getCategories.rejected, (state, action) => {
 			state.status = Status.ERROR;
 			state.categories = [];
 		});

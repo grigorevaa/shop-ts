@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AuthSliceState, Status } from '../types';
 import { getUser, login, logout, signup, updateUser } from './asyncActions';
 
-const user = JSON.parse(localStorage.getItem('user') as string);
+// const user = JSON.parse(localStorage.getItem('user') as string);
 
 const initialState: AuthSliceState = {
-	user: user ? user : null,
+	user: null,
 	status: Status.IDLE,
 };
 
@@ -50,10 +50,10 @@ const authSlice = createSlice({
 		builder.addCase(logout.rejected, (state, action) => {
 			state.status = Status.ERROR;
 		});
+
 		builder.addCase(getUser.pending, (state, action) => {
 			state.status = Status.LOADING;
 		});
-
 		builder.addCase(getUser.fulfilled, (state, action) => {
 			state.user = action.payload;
 			state.status = Status.SUCCESS;

@@ -1,28 +1,51 @@
 import { Star } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
-import { fetchProduct } from '../../redux/product/asyncActions';
+import { changeQuantityProduct } from '../../redux/cart/asyncActions';
+import { getProduct } from '../../redux/product/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { CountBar } from '../CountBar';
 import { Skeleton } from '../Skeleton';
 
-interface Props {}
-
-export const ProductPage: React.FC<Props> = () => {
+export const ProductPage: React.FC = () => {
+	const [quantity, setQuantity] = useState(1);
 	const { id } = useParams();
 	const { product, status } = useAppSelector(state => state.product);
+	const { cartId, totalPrice } = useAppSelector(state => state.cart);
 	const dispatch = useAppDispatch();
 
-	const getProduct = async (id: number) => {
+	const fetchProduct = async (id: number) => {
 		try {
-			await dispatch(fetchProduct(id)).unwrap();
+			await dispatch(getProduct(id)).unwrap();
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	useEffect(() => {
-		getProduct(Number(id));
+		fetchProduct(Number(id));
 	}, [id]);
+
+	const onClickAddToCart = async () => {
+		if (!cartId) {
+			toast.error('Войдите в аккаунт, чтобы добавить товар в корзину');
+			return;
+		}
+		if (!product) return;
+
+		dispatch(
+			changeQuantityProduct({
+				cartId,
+				totalPrice,
+				productId: product.id,
+				productPrice: product.price,
+				quantity,
+			}),
+		);
+		// changeQuantityProduct(cartId, product.id, quantity);
+		toast.success('Товар добавлен в корзину');
+	};
 
 	if (status === 'loading') {
 		return (
@@ -60,8 +83,10 @@ export const ProductPage: React.FC<Props> = () => {
 								</div>
 
 								<div className="product-page__add-to-cart">
-									{/* <div>counter</div> */}
-									<button className="primary-button">В корзину</button>
+									<CountBar value={quantity} onChangeInput={setQuantity} />
+									<button className="primary-button" onClick={onClickAddToCart}>
+										В корзину
+									</button>
 								</div>
 							</div>
 						</>

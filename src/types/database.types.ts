@@ -9,49 +9,49 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      carts: {
+      cart: {
         Row: {
           id: number
-          totalPrice: number | null
+          totalPrice: number
           userId: string | null
         }
         Insert: {
           id?: number
-          totalPrice?: number | null
+          totalPrice?: number
           userId?: string | null
         }
         Update: {
           id?: number
-          totalPrice?: number | null
+          totalPrice?: number
           userId?: string | null
         }
         Relationships: []
       }
-      cartsItems: {
+      cartItems: {
         Row: {
           cartId: number
-          created_at: string
           id: number
           productId: number
+          quantity: number
         }
         Insert: {
           cartId: number
-          created_at?: string
           id?: number
           productId: number
+          quantity: number
         }
         Update: {
           cartId?: number
-          created_at?: string
           id?: number
           productId?: number
+          quantity?: number
         }
         Relationships: [
           {
             foreignKeyName: "cartsItems_cartId_fkey"
             columns: ["cartId"]
             isOneToOne: false
-            referencedRelation: "carts"
+            referencedRelation: "cart"
             referencedColumns: ["id"]
           },
           {

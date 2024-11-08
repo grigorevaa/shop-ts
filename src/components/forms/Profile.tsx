@@ -1,8 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { logout, updateUser } from '../../redux/auth/asyncActions';
+import { clearLocalCart } from '../../redux/cart/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { FormInput } from './FormInput';
 import { profileSchema, TProfileValues } from './schemas';
@@ -16,16 +18,22 @@ export const Profile: React.FC<Props> = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
+	const defaultValues = {
+		email: user?.email || '',
+		password: '',
+		confirmPassword: '',
+		firstName: user?.user_metadata.firstName || '',
+		lastName: user?.user_metadata.lastName || '',
+	};
+
 	const form = useForm({
 		resolver: zodResolver(profileSchema),
-		defaultValues: {
-			email: user?.email || '',
-			password: '',
-			confirmPassword: '',
-			firstName: user?.user_metadata.firstName || '',
-			lastName: user?.user_metadata.lastName || '',
-		},
+		defaultValues,
 	});
+
+	useEffect(() => {
+		form.reset(defaultValues);
+	}, [user]);
 
 	const onSubmit = async (data: TProfileValues) => {
 		try {
@@ -45,6 +53,7 @@ export const Profile: React.FC<Props> = () => {
 	};
 
 	const onSignOut = () => {
+		dispatch(clearLocalCart());
 		dispatch(logout());
 		navigate('/');
 	};

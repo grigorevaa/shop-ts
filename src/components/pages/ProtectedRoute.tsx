@@ -7,9 +7,9 @@ interface Props {
 }
 
 export const ProtectedRoute: React.FC<Props> = ({ children }) => {
-	const { user } = useAppSelector(state => state.auth);
+	const { user, status } = useAppSelector(state => state.auth);
 
-	if (!user) {
+	if (!user && status === 'success') {
 		return <Navigate to="/not-auth" replace />;
 	}
 

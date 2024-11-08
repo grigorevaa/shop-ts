@@ -35,6 +35,12 @@ button {
 }
 
 .loading-button {
+	.icon {
+		color: $grey-100;
+		margin: 0;
+		padding: 0;
+	}
+	width: 10rem;
 	border: 1px solid $grey-400;
 	background-color: $grey-300;
 }

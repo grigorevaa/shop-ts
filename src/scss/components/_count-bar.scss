@@ -1,0 +1,49 @@
+@use '../abstracts' as *;
+
+.count-bar {
+	display: flex;
+	align-items: center;
+
+	&__button {
+		width: 3rem;
+		height: 3rem;
+		background-color: $grey-100;
+		border: 1px solid $primary-base;
+		border-radius: 1.2rem;
+
+		.count-bar__icon {
+			color: $primary-base;
+		}
+
+		&:hover {
+			background-color: $primary-base;
+
+			.count-bar__icon {
+				color: $grey-100;
+			}
+		}
+
+		&:disabled {
+			border: 1px solid $grey-400;
+			.count-bar__icon {
+				color: $grey-400;
+			}
+
+			&:hover {
+				background-color: $grey-100;
+			}
+		}
+	}
+
+	&__input {
+		width: 3rem;
+		height: 3rem;
+		font-size: 2rem;
+		text-align: center;
+		border: 1px solid $grey-600;
+		text-align: center;
+		border-radius: 1.2rem;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+	}
+}
