@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { changeQuantityProduct, getCart } from '../../redux/cart/asyncActions';
+import { getCart } from '../../redux/cart/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { getCartItems } from '../../services/apiCart';
 import { CartItem } from '../CartItem';
 import { CartSidebar } from '../CartSidebar';
+import { EmptyCart } from '../EmptyCart';
+import { Skeleton } from '../Skeleton';
 
 interface Props {
 	className?: string;
@@ -33,7 +34,11 @@ export const CartPage: React.FC<Props> = () => {
 			<div className="container">
 				<div className="cart-page__items">
 					<h1 className="cart-page__title">Корзина</h1>
-					{status === 'success' &&
+					{items.length === 0 && status === 'success' && <EmptyCart />}
+
+					{status === 'loading' || status === 'idle' ? (
+						<Skeleton type="cart-items" />
+					) : (
 						items.map((item, index) => (
 							<CartItem
 								item={item}
@@ -41,9 +46,9 @@ export const CartPage: React.FC<Props> = () => {
 								cartId={cartId!}
 								totalPrice={totalPrice}
 							/>
-						))}
+						))
+					)}
 				</div>
-
 				<CartSidebar />
 			</div>
 		</div>

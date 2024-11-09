@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+.empty-cart {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	&__title {
+		font-size: 2.4rem;
+		font-weight: 500;
+	}
+
+	&__img {
+		width: 20rem;
+		height: 20rem;
+	}
+
+	&__text {
+		font-size: 1.6rem;
+		color: $grey-400;
+	}
+
+	.primary-button {
+		font-size: 1.6rem;
+		padding: 2rem 2rem;
+		border-radius: 1.2rem;
+	}
+}

@@ -4,7 +4,6 @@ export const Logo: React.FC = () => {
 	return (
 		<div className="logo">
 			<img src={logoSvg} alt="logo" height={48} width={48} />
-
 			<div>
 				<h1>Sweets Shop</h1>
 				<span>Лучшие вкусности мира!</span>
