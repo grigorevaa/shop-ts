@@ -49,7 +49,7 @@ export const CartPage: React.FC<Props> = () => {
 						))
 					)}
 				</div>
-				<CartSidebar />
+				<CartSidebar cartPrice={totalPrice} status={status} />
 			</div>
 		</div>
 	);

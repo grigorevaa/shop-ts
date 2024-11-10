@@ -1,0 +1,28 @@
+@use '../abstracts' as *;
+
+.cart-sidebar-item {
+	display: flex;
+	// justify-content: space-between;
+	font-size: 1.8rem;
+
+	&__title {
+		display: flex;
+		flex-grow: 1;
+		color: $grey-500;
+	}
+
+	&__dots {
+		flex-grow: 1;
+		border-bottom: 1px solid $grey-300;
+		border-style: dashed;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		position: relative;
+		top: -0.5rem;
+	}
+
+	&__price {
+		text-align: right;
+	}
+}
