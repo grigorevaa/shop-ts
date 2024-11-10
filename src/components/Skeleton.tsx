@@ -119,5 +119,33 @@ export const Skeleton: React.FC<Props> = ({ type }) => {
 		);
 	}
 
+	if (type === 'cart-sidebar-item') {
+		return (
+			<ContentLoader
+				speed={2}
+				width={80}
+				height={18}
+				viewBox="0 0 80 18"
+				backgroundColor="#f3f3f3"
+				foregroundColor="#ecebeb">
+				<rect x="0" y="0" rx="10" ry="10" width="80" height="18" />
+			</ContentLoader>
+		);
+	}
+
+	if (type === 'cart-sidebar-total') {
+		return (
+			<ContentLoader
+				speed={2}
+				width={80}
+				height={20}
+				viewBox="0 0 80 20"
+				backgroundColor="#f3f3f3"
+				foregroundColor="#ecebeb">
+				<rect x="0" y="0" rx="10" ry="10" width="80" height="20" />
+			</ContentLoader>
+		);
+	}
+
 	return null;
 };

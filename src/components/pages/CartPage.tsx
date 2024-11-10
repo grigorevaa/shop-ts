@@ -36,7 +36,7 @@ export const CartPage: React.FC<Props> = () => {
 					<h1 className="cart-page__title">Корзина</h1>
 					{items.length === 0 && status === 'success' && <EmptyCart />}
 
-					{status === 'loading' || status === 'idle' ? (
+					{status !== 'success' ? (
 						<Skeleton type="cart-items" />
 					) : (
 						items.map((item, index) => (

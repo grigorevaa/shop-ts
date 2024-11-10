@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Status } from '../redux/types';
 import { CartSidebarItem } from './CartSidebarItem';
+import { Skeleton } from './Skeleton';
 
 const TAX_RATE = 0.05;
 const DELIVERY_PRICE = 200;
@@ -16,10 +17,34 @@ export const CartSidebar: React.FC<Props> = ({ cartPrice, status }) => {
 	return (
 		<div className="cart-sidebar">
 			<div className="cart-sidebar__title">Итого:</div>
-			<div className="cart-sidebar__price">{summary} ₽</div>
-			<CartSidebarItem title="Стоимость корзины:" price={cartPrice} />
-			<CartSidebarItem title="Налоги:" price={cartPrice * TAX_RATE} />
-			<CartSidebarItem title="Доставка:" price={DELIVERY_PRICE} />
+			<div className="cart-sidebar__price">
+				{status !== 'success' ? (
+					<Skeleton type="cart-sidebar-total" />
+				) : (
+					`${summary} ₽`
+				)}
+			</div>
+			<CartSidebarItem
+				title="Стоимость корзины:"
+				value={
+					status !== 'success' ? (
+						<Skeleton type="cart-sidebar-item" />
+					) : (
+						`${cartPrice} ₽`
+					)
+				}
+			/>
+			<CartSidebarItem
+				title="Налоги:"
+				value={
+					status !== 'success' ? (
+						<Skeleton type="cart-sidebar-item" />
+					) : (
+						`${cartPrice * TAX_RATE} ₽`
+					)
+				}
+			/>
+			<CartSidebarItem title="Доставка:" value={DELIVERY_PRICE} />
 			<button className="primary-button">
 				Перейти к оплате{' '}
 				<span className="cart-sidebar__icon">
