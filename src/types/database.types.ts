@@ -91,6 +91,7 @@ export type Database = {
           name: string
           price: number
           rating: number
+          ratingCount: number
         }
         Insert: {
           category: number
@@ -101,6 +102,7 @@ export type Database = {
           name: string
           price: number
           rating: number
+          ratingCount?: number
         }
         Update: {
           category?: number
@@ -111,6 +113,7 @@ export type Database = {
           name?: string
           price?: number
           rating?: number
+          ratingCount?: number
         }
         Relationships: [
           {
@@ -118,6 +121,35 @@ export type Database = {
             columns: ["category"]
             isOneToOne: false
             referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ratings: {
+        Row: {
+          id: number
+          productId: number
+          rating: number
+          userId: string
+        }
+        Insert: {
+          id?: number
+          productId: number
+          rating: number
+          userId?: string
+        }
+        Update: {
+          id?: number
+          productId?: number
+          rating?: number
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ratings_productId_fkey"
+            columns: ["productId"]
+            isOneToOne: false
+            referencedRelation: "products"
             referencedColumns: ["id"]
           },
         ]

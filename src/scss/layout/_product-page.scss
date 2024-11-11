@@ -2,10 +2,15 @@
 
 .skeleton-container {
 	padding: 2rem;
+	margin-top: 4rem;
 	padding-left: 0;
 }
 
 .product-page {
+	.container {
+		margin-top: 4rem;
+	}
+
 	img {
 		width: 60rem;
 		height: 60rem;
@@ -26,17 +31,20 @@
 	}
 
 	&__rating {
-		padding-top: 0.2rem;
+		margin-top: 1rem;
 		display: flex;
 		gap: 0.5rem;
 		align-items: center;
 
 		.icon {
 			color: $primary-base;
+			margin-bottom: 0.2rem;
 		}
 
-		span {
+		.rating {
+			display: flex;
 			font-size: 2rem;
+			line-height: 2.4rem;
 		}
 	}
 
@@ -61,5 +69,22 @@
 			border-radius: 1.2rem;
 			font-size: 1.6rem;
 		}
+	}
+
+	&__user-review {
+		margin-top: 2rem;
+	}
+
+	&__user-review-stars {
+		display: flex;
+		align-items: center;
+		font-size: 2.4rem;
+		font-weight: 400;
+		gap: 2rem;
+	}
+
+	.product-page__user-rating {
+		color: $primary-base;
+		font-size: 4rem;
 	}
 }

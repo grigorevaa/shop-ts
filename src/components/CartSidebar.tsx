@@ -44,13 +44,15 @@ export const CartSidebar: React.FC<Props> = ({ cartPrice, status }) => {
 					)
 				}
 			/>
-			<CartSidebarItem title="Доставка:" value={DELIVERY_PRICE} />
-			<button className="primary-button">
-				Перейти к оплате{' '}
-				<span className="cart-sidebar__icon">
-					<ArrowRight />
-				</span>
-			</button>
+			<CartSidebarItem title="Доставка:" value={`${DELIVERY_PRICE} ₽`} />
+			{cartPrice !== 0 && (
+				<button className="primary-button" disabled={status !== 'success'}>
+					Перейти к оплате
+					<span className="cart-sidebar__icon">
+						<ArrowRight />
+					</span>
+				</button>
+			)}
 		</div>
 	);
 };

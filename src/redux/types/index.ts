@@ -8,6 +8,7 @@ export type Product = {
 	price: number;
 	rating: number;
 	category: number;
+	ratingCount: number;
 };
 
 export enum Status {
@@ -35,7 +36,9 @@ export interface SearchSliceState {
 
 export interface ProductSliceState {
 	product: Product | null;
-	status: Status;
+	userRating: number | null;
+	statusProduct: Status;
+	statusUserRating: Status;
 }
 
 export interface CategoriesSliceState {

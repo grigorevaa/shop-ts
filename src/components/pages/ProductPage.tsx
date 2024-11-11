@@ -1,19 +1,39 @@
+import { Rating } from '@mui/material';
 import { Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { changeQuantityProduct } from '../../redux/cart/asyncActions';
-import { getProduct } from '../../redux/product/asyncActions';
+import {
+	getProduct,
+	getUserRating,
+	setUserRating,
+	updateUserRating,
+} from '../../redux/product/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { getNoun } from '../../utils/getNoun';
 import { CountBar } from '../CountBar';
 import { Skeleton } from '../Skeleton';
 
 export const ProductPage: React.FC = () => {
+	const { user } = useAppSelector(state => state.auth);
+	const { product, statusProduct, statusUserRating, userRating } =
+		useAppSelector(state => state.product);
+	const { cartId, totalPrice } = useAppSelector(state => state.cart);
+
 	const [quantity, setQuantity] = useState(1);
 	const { id } = useParams();
-	const { product, status } = useAppSelector(state => state.product);
-	const { cartId, totalPrice } = useAppSelector(state => state.cart);
 	const dispatch = useAppDispatch();
+
+	const [rating, setRating] = useState<number | null>(userRating);
+
+	const wordForCount = product
+		? getNoun(product.ratingCount, 'оценка', 'оценки', 'оценок')
+		: null;
+
+	const ratingString = product
+		? `${product.rating.toFixed(1)} (${product.ratingCount} ${wordForCount})`
+		: null;
 
 	const fetchProduct = async (id: number) => {
 		try {
@@ -23,9 +43,65 @@ export const ProductPage: React.FC = () => {
 		}
 	};
 
+	const setUserRatingHandler = async (value: number | null) => {
+		try {
+			if (user && product) {
+				await dispatch(
+					setUserRating({
+						productId: Number(id),
+						userId: user.id,
+						currentRating: product.rating,
+						ratingCount: product.ratingCount,
+						userRating: value!,
+					}),
+				).unwrap();
+
+				toast.success('Рейтинг установлен');
+			}
+		} catch (error) {
+			console.log(error);
+			toast.error('Произошла ошибка при установке рейтинга');
+		}
+	};
+
+	const updateUserRatingHandler = async (value: number | null) => {
+		try {
+			if (user && product && userRating) {
+				await dispatch(
+					updateUserRating({
+						productId: Number(id),
+						userId: user.id,
+						currentRating: product.rating,
+						currentUserRating: userRating,
+						ratingCount: product.ratingCount,
+						newUserRating: value!,
+					}),
+				).unwrap();
+
+				toast.success('Рейтинг изменен');
+			}
+		} catch (error) {
+			console.log(error);
+			toast.error('Произошла ошибка при изменении рейтинга');
+		}
+	};
+
+	const fetchUserRating = async (productId: number, userId: string) => {
+		try {
+			await dispatch(getUserRating({ productId, userId })).unwrap();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		fetchProduct(Number(id));
 	}, [id]);
+
+	useEffect(() => {
+		if (user) fetchUserRating(Number(id), user.id);
+		setRating(userRating);
+	}, [user, userRating]);
 
 	const onClickAddToCart = async () => {
 		if (!cartId) {
@@ -43,11 +119,11 @@ export const ProductPage: React.FC = () => {
 				quantity,
 			}),
 		);
-		// changeQuantityProduct(cartId, product.id, quantity);
+
 		toast.success('Товар добавлен в корзину');
 	};
 
-	if (status === 'loading') {
+	if (statusProduct === 'loading') {
 		return (
 			<div className="container">
 				<div className="skeleton-container">
@@ -68,14 +144,16 @@ export const ProductPage: React.FC = () => {
 								<h2>{product.name}</h2>
 								<div className="product-page__rating">
 									<Star size={20} className="icon" />
-									<span className="">{product.rating}</span>
+									<span className="rating">
+										{statusUserRating === 'loading' ? (
+											<Skeleton type="product-rating" />
+										) : (
+											ratingString
+										)}
+									</span>
 								</div>
 								<p className="product-page__description">
 									{product.description}
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Aspernatur cupiditate maiores culpa? Quisquam minima rem velit
-									aspernatur doloribus et culpa alias, odio id porro? Ipsa
-									debitis voluptatum non nihil ut!
 								</p>
 
 								<div className="product-page__price">
@@ -88,14 +166,36 @@ export const ProductPage: React.FC = () => {
 										В корзину
 									</button>
 								</div>
+
+								{user && (
+									<div className="product-page__user-review">
+										{statusUserRating === 'loading' ? (
+											<Skeleton type="product-user-rating" />
+										) : (
+											<div className="product-page__user-review-stars">
+												{userRating
+													? 'Ваша оценка/изменить оценку:'
+													: 'Оцените продукт:'}
+												<Rating
+													className="product-page__user-rating"
+													value={rating}
+													onChange={(event, newValue) => {
+														setRating(newValue);
+														if (userRating) {
+															updateUserRatingHandler(newValue);
+														} else {
+															setUserRatingHandler(newValue);
+														}
+													}}
+												/>
+											</div>
+										)}
+									</div>
+								)}
 							</div>
 						</>
 					)}
 				</div>
-
-				{/* <div className="product-page__content-bottom">
-					<h2>Отзывы</h2>
-				</div> */}
 			</div>
 		</div>
 	);

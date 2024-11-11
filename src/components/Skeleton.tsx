@@ -147,5 +147,33 @@ export const Skeleton: React.FC<Props> = ({ type }) => {
 		);
 	}
 
+	if (type === 'product-rating') {
+		return (
+			<ContentLoader
+				speed={2}
+				width={120}
+				height={24}
+				viewBox="0 0 120 24"
+				backgroundColor="#f3f3f3"
+				foregroundColor="#ecebeb">
+				<rect x="0" y="0" rx="10" ry="10" width="120" height="24" />
+			</ContentLoader>
+		);
+	}
+
+	if (type === 'product-user-rating') {
+		return (
+			<ContentLoader
+				speed={2}
+				width={600}
+				height={50}
+				viewBox="0 0 600 50"
+				backgroundColor="#f3f3f3"
+				foregroundColor="#ecebeb">
+				<rect x="0" y="0" rx="10" ry="10" width="600" height="50" />
+			</ContentLoader>
+		);
+	}
+
 	return null;
 };
