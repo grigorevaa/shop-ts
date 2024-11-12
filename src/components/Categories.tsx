@@ -12,11 +12,13 @@ interface Props {
 export const Categories: React.FC<Props> = ({ categories, activeCategory }) => {
 	return (
 		<div className="categories">
-			<ul>
+			<ul className="categories__list">
 				{categories.map(category => (
 					<a
 						href={`/#${category.name}`}
-						className={`${activeCategory === category.id ? 'active' : ''}`}
+						className={`categories__item${
+							activeCategory === category.id ? '-active' : ''
+						}`}
 						key={category.id}>
 						{category.name}
 					</a>

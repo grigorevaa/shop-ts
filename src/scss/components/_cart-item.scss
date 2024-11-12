@@ -12,17 +12,17 @@
 	border-top: 1px solid $grey-200;
 	border-radius: 1.2rem;
 
-	img {
+	&__image {
 		width: 8rem;
 		height: 8rem;
 		border-radius: 1.2rem;
 	}
 
-	.cart-item__total {
+	&__total {
 		justify-self: center;
 	}
 
-	.cart-item__quantity {
+	&__quantity {
 		justify-self: center;
 	}
 

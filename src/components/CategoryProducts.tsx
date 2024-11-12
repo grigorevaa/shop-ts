@@ -30,8 +30,8 @@ export const CategoryProducts: React.FC<Props> = ({
 			className="category-products"
 			ref={intersectionRef}
 			id={category.name}>
-			<h1 className="title">{category.name}</h1>
-			<div className="products">
+			<h1 className="category-products__title">{category.name}</h1>
+			<div className="category-products__products">
 				{items.map(item => (
 					<ProductItem product={item} key={item.id} />
 				))}

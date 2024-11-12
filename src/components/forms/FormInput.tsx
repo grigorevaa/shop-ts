@@ -30,9 +30,14 @@ export const FormInput: React.FC<Props> = ({
 
 	return (
 		<div className="form-input">
-			<div className={'form-input__input'}>
+			<div className="form-input__container">
 				<p className="form-input__label">{label}</p>
-				<input {...register(name)} type={type} disabled={disabled} />
+				<input
+					className="form-input__input"
+					{...register(name)}
+					type={type}
+					disabled={disabled}
+				/>
 				{value && !disabled && (
 					<button className="form-input__clear" onClick={onClickClear}>
 						<X className="icon" />

@@ -139,9 +139,13 @@ export const ProductPage: React.FC = () => {
 				<div className="product-page__content-top">
 					{product && (
 						<>
-							<img src={product.img} alt={product.name} />
+							<img
+								className="product-page__image"
+								src={product.img}
+								alt={product.name}
+							/>
 							<div>
-								<h2>{product.name}</h2>
+								<h2 className="product-page__title">{product.name}</h2>
 								<div className="product-page__rating">
 									<Star size={20} className="icon" />
 									<span className="rating">

@@ -25,8 +25,8 @@ export const HomePage: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="home">
-			<div className="content-top">
+		<div className="home-page">
+			<div className="home-page__content-top">
 				<div className="container">
 					{status === 'loading' ? (
 						<Skeleton type="categories" />
@@ -40,7 +40,7 @@ export const HomePage: React.FC = () => {
 				</div>
 			</div>
 
-			<div className="content-bottom">
+			<div className="home-page__content-bottom">
 				<div className="container">
 					{status === 'loading' ? (
 						<Skeleton type="category-with-products" />

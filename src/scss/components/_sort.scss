@@ -30,23 +30,26 @@
 		box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
 		border-radius: 1rem;
 		overflow: hidden;
+	}
 
-		ul {
-			overflow: hidden;
-			li {
-				padding: 12px 20px;
-				cursor: pointer;
+	&__list {
+		overflow: hidden;
+	}
 
-				&:hover {
-					background-color: $primary-base-light;
-				}
+	&__list-item {
+		padding: 12px 20px;
+		cursor: pointer;
 
-				&.active {
-					font-weight: bold;
-					color: $primary-base;
-					background-color: $primary-base-light;
-				}
-			}
+		&:hover {
+			background-color: $primary-base-light;
 		}
+	}
+
+	&__list-item-active {
+		padding: 12px 20px;
+		cursor: pointer;
+		font-weight: bold;
+		color: $primary-base;
+		background-color: $primary-base-light;
 	}
 }

@@ -6,22 +6,22 @@
 		line-height: 2rem;
 	}
 
-	&__input {
+	&__container {
 		position: relative;
+	}
 
-		input {
-			width: 100%;
-			padding: 1rem;
-			border: 1px solid $grey-300;
-			border-radius: 1rem;
-			font-size: 1.6rem;
-			line-height: 2rem;
-			padding-right: 4rem;
-			transition: all 0.3s ease;
+	&__input {
+		width: 100%;
+		padding: 1rem;
+		border: 1px solid $grey-300;
+		border-radius: 1rem;
+		font-size: 1.6rem;
+		line-height: 2rem;
+		padding-right: 4rem;
+		transition: all 0.3s ease;
 
-			&:focus {
-				border: 1px solid $grey-600;
-			}
+		&:focus {
+			border: 1px solid $grey-600;
 		}
 	}
 

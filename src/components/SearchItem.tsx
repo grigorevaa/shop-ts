@@ -12,8 +12,8 @@ export const SearchItem: React.FC<Props> = ({ item, onSelectItem }) => {
 			className="search-item"
 			to={`/product/${item.id}`}
 			onClick={onSelectItem}>
-			<img src={item.img} alt={item.name} />
-			<span>{item.name}</span>
+			<img className="search-item__img" src={item.img} alt={item.name} />
+			<span className="search-item__name">{item.name}</span>
 		</Link>
 	);
 };

@@ -34,10 +34,11 @@ export const Search: React.FC = () => {
 			{focused && <div className="search-blackout" />}
 
 			<div className="search-bar" ref={ref}>
-				<div className="icon">
+				<div className="search-bar__icon">
 					<SearchIcon width={22} height={22} />
 				</div>
 				<input
+					className="search-bar__input"
 					type="text"
 					placeholder="Поиск..."
 					value={searchStr}

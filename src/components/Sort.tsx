@@ -29,7 +29,7 @@ export const Sort: React.FC = () => {
 
 			{open && (
 				<div className="sort__popup">
-					<ul>
+					<ul className="sort__list">
 						{sortOptions.map((obj, index) => (
 							<li
 								key={obj.value}
@@ -37,7 +37,9 @@ export const Sort: React.FC = () => {
 									onClickActive(index);
 									onClickOpen();
 								}}
-								className={`${active === index ? 'active' : ''}`}>
+								className={`sort__list-item${
+									active === index ? '-active' : ''
+								}`}>
 								{obj.name}
 							</li>
 						))}

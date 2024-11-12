@@ -1,0 +1,15 @@
+.category-products {
+	padding-top: 4rem;
+
+	&__title {
+		font-size: 4rem;
+		font-weight: 500;
+		margin-bottom: 1.5rem;
+	}
+
+	&__products {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 5rem;
+	}
+}
