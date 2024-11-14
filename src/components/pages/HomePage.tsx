@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react';
 import { getCategories } from '../../redux/categories/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { sortCategories } from '../../utils/sortCategories';
 import { Categories } from '../Categories';
 import { CategoryProducts } from '../CategoryProducts';
 import { Skeleton } from '../Skeleton';
 import { Sort } from '../Sort';
 
+const sortOptions = [
+	{ value: 'rating-desc', name: 'рейтинг (убыв.)' },
+	{ value: 'rating-asc', name: 'рейтинг (возр.)' },
+	{ value: 'price-desc', name: 'цена (убыв.)' },
+	{ value: 'price-asc', name: 'цена (возр.)' },
+	{ value: 'alphabet', name: 'алфавит' },
+];
+
 export const HomePage: React.FC = () => {
-	// const [categories, setCategories] = useState<CategoryWithProducts[]>([]);
+	const [activeOptionSort, setActiveOptionSort] = useState(0);
 	const dispatch = useAppDispatch();
 	const { categories, status } = useAppSelector(state => state.categories);
 	const [activeCategory, setActiveCategory] = useState(0);
@@ -24,6 +33,11 @@ export const HomePage: React.FC = () => {
 		fetchCategories();
 	}, []);
 
+	const sortedCategories = sortCategories(
+		categories,
+		sortOptions[activeOptionSort].value,
+	);
+
 	return (
 		<div className="home-page">
 			<div className="home-page__content-top">
@@ -33,10 +47,14 @@ export const HomePage: React.FC = () => {
 					) : (
 						<Categories
 							activeCategory={activeCategory}
-							categories={categories}
+							categories={sortedCategories}
 						/>
 					)}
-					<Sort />
+					<Sort
+						sortOptions={sortOptions}
+						activeOptionSort={activeOptionSort}
+						setActiveOptionSort={setActiveOptionSort}
+					/>
 				</div>
 			</div>
 
@@ -45,7 +63,7 @@ export const HomePage: React.FC = () => {
 					{status === 'loading' ? (
 						<Skeleton type="category-with-products" />
 					) : (
-						categories.map(category => (
+						sortedCategories.map(category => (
 							<CategoryProducts
 								category={category}
 								items={category.products}
