@@ -36,7 +36,7 @@ export const ProductItem: React.FC<Props> = ({
 	return (
 		<div className="product-item">
 			<Link to={`/product/${id}`}>
-				<img src={img} alt={`of ${name}`} />
+				<img className="product-item__img" src={img} alt={`of ${name}`} />
 				<div className="info">
 					<div className="name">{name}</div>
 					<div className="description">{description}</div>

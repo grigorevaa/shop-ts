@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './components/AppLayout';
 import { CartPage } from './components/pages/CartPage';
 import { HomePage } from './components/pages/HomePage';
+import { NotAuth } from './components/pages/NotAuth';
 import { NotFound } from './components/pages/NotFound';
 import { ProductPage } from './components/pages/ProductPage';
 import { ProfilePage } from './components/pages/ProfilePage';
@@ -36,7 +37,7 @@ function App() {
 								</ProtectedRoute>
 							}
 						/>
-						<Route path="/not-auth" element={<NotFound />} />
+						<Route path="/not-auth" element={<NotAuth />} />
 					</Route>
 					<Route path="*" element={<NotFound />} />
 				</Routes>

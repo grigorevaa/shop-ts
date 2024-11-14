@@ -4,11 +4,13 @@ interface Props {
 	className?: string;
 }
 
-export const NotFound: React.FC<Props> = ({ className }) => {
+export const NotAuth: React.FC<Props> = ({ className }) => {
 	return (
-		<div className="not-found">
+		<div className="not-auth">
 			<div className="container">
-				<h1 className="not-found__title">Такой страницы не существует.</h1>
+				<h1 className="not-auth__title">
+					Войдите в аккаунт или перейдите на главную страницу!
+				</h1>
 				<Link to="/">
 					<button className="primary-button">На главную</button>
 				</Link>

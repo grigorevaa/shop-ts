@@ -19,7 +19,11 @@ export const ProductPage: React.FC = () => {
 	const { user } = useAppSelector(state => state.auth);
 	const { product, statusProduct, statusUserRating, userRating } =
 		useAppSelector(state => state.product);
-	const { cartId, totalPrice } = useAppSelector(state => state.cart);
+	const {
+		cartId,
+		totalPrice,
+		status: cartStatus,
+	} = useAppSelector(state => state.cart);
 
 	const [quantity, setQuantity] = useState(1);
 	const { id } = useParams();
@@ -166,7 +170,10 @@ export const ProductPage: React.FC = () => {
 
 								<div className="product-page__add-to-cart">
 									<CountBar value={quantity} onChangeInput={setQuantity} />
-									<button className="primary-button" onClick={onClickAddToCart}>
+									<button
+										className="primary-button"
+										onClick={onClickAddToCart}
+										disabled={cartStatus === 'loading'}>
 										В корзину
 									</button>
 								</div>
