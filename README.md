@@ -11,3 +11,5 @@ List of all used technologies:
 3. Zod
 4. SCSS
 5. Supabase
+
+Visit the link to view the project: https://shop-ts-blue.vercel.app/
