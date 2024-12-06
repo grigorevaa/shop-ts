@@ -1,8 +1,7 @@
-import { CircularProgress } from '@mui/material';
 import { ShoppingCart, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../redux/store';
+import { useAppSelector } from '../redux/store';
 import { Login } from './forms/Login';
 import { Registration } from './forms/Registration';
 import { LoadingButton } from './LoadingButton';
@@ -31,7 +30,7 @@ export const ProfileAndCart: React.FC = () => {
 				(cartStatus === 'loading' || userStatus === 'loading' ? (
 					<LoadingButton />
 				) : (
-					<Link to="/cart">
+					<Link to="/cart" className="profile-and-cart__link">
 						<button className="primary-button">
 							<div className="icon">
 								<ShoppingCart size={20} />
@@ -44,7 +43,7 @@ export const ProfileAndCart: React.FC = () => {
 			{userStatus === 'loading' ? (
 				<LoadingButton />
 			) : user ? (
-				<Link to="/profile">
+				<Link to="/profile" className="profile-and-cart__link">
 					<button className="primary-button">
 						<div className="icon">
 							<User size={20} />

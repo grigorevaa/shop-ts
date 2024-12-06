@@ -1,10 +1,21 @@
 @use '../abstracts' as *;
 
 .container {
-	width: $container-width;
 	margin: 0 auto;
 
 	&--home {
 		width: 100%;
+	}
+
+	@media screen and (max-width: 1000px) {
+		width: $container-width-mobile;
+	}
+
+	@media screen and (min-width: 1000px) {
+		width: $container-width-laptop;
+	}
+
+	@media screen and (min-width: 1440px) {
+		width: $container-width-desktop;
 	}
 }
