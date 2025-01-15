@@ -6,6 +6,7 @@ import { Categories } from '../Categories';
 import { CategoryProducts } from '../CategoryProducts';
 import { Skeleton } from '../Skeleton';
 import { Sort } from '../Sort';
+import { CategoryWithItemsSkeleton } from '../skeletons/CategoriesWithItemsSkeleton';
 
 const sortOptions = [
 	{ value: 'rating-desc', name: 'рейтинг (убыв.)' },
@@ -61,7 +62,7 @@ export const HomePage: React.FC = () => {
 			<div className="home-page__content-bottom">
 				<div className="container">
 					{status === 'loading' ? (
-						<Skeleton type="category-with-products" />
+						<CategoryWithItemsSkeleton />
 					) : (
 						sortedCategories.map(category => (
 							<CategoryProducts

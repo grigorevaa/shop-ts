@@ -1,8 +1,4 @@
-interface Props {
-	className?: string;
-}
-
-export const ProductPageSkeleton: React.FC<Props> = () => {
+export const ProductPageSkeleton: React.FC = () => {
 	return (
 		<div className="p-p-skeleton">
 			<div className="container">

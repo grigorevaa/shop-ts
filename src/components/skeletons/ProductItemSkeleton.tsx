@@ -1,7 +1,9 @@
-interface Props {
-	className?: string;
-}
-
-export const ProductItemSkeleton: React.FC<Props> = ({ className }) => {
-	return <div className={className}></div>;
+export const ProductItemSkeleton: React.FC = () => {
+	return (
+		<div className="p-i-skeleton">
+			<div className="p-i-skeleton__img skeleton" />
+			<div className="p-i-skeleton__info skeleton" />
+			<div className="p-i-skeleton__cart-block skeleton" />
+		</div>
+	);
 };
