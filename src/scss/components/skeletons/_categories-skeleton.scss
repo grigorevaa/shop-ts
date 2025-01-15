@@ -1,0 +1,17 @@
+.categories-skeleton {
+	display: flex;
+	gap: 1rem;
+
+	&__item {
+		width: 10rem;
+		height: 2.4rem;
+		border-radius: 1rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.categories-skeleton {
+		margin-top: 2rem;
+		margin-bottom: 1.5rem;
+	}
+}
