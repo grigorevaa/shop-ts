@@ -148,7 +148,7 @@ export const ProductPage: React.FC = () => {
 								src={product.img}
 								alt={product.name}
 							/>
-							<div>
+							<div className="product-page__info">
 								<h2 className="product-page__title">{product.name}</h2>
 								<div className="product-page__rating">
 									<Star size={20} className="icon" />
