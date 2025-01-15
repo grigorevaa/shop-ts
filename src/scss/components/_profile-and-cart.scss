@@ -3,15 +3,10 @@
 .profile-and-cart {
 	display: flex;
 	gap: 1rem;
-	width: 25rem;
 	justify-content: flex-end;
 
 	.primary-button,
 	.secondary-button {
-		padding: 1rem 1rem;
-		border-radius: 1.2rem;
-		font-size: 1.8rem;
-		// line-height: 1.6rem;
 		.icon {
 			margin-right: 0.6rem;
 		}
@@ -24,5 +19,44 @@
 		border-radius: 1.2rem;
 		font-size: 1.6rem;
 		line-height: 1.6rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.profile-and-cart {
+		width: 100%;
+		justify-content: flex-start;
+
+		.primary-button,
+		.secondary-button {
+			width: 100%;
+			border: 2px solid $primary-base;
+		}
+
+		.loading-button {
+			width: 100%;
+		}
+
+		&__link {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 950px) {
+	.profile-and-cart {
+		width: 40rem;
+		align-self: center;
+		justify-content: flex-start;
+
+		.primary-button,
+		.secondary-button {
+			width: 100%;
+			border: 2px solid $primary-base;
+		}
+
+		&__link {
+			width: 100%;
+		}
 	}
 }

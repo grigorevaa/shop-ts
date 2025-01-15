@@ -2,15 +2,23 @@
 
 .form {
 	height: 100%;
-	padding: 4rem;
-	padding-top: 6rem;
-	padding-bottom: 2rem;
 
-	&__content {
+	&__content-login,
+	&__content-registration,
+	&__content-profile {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		gap: 1rem;
+	}
+
+	&__content-profile {
+		width: 40rem;
+		padding: 3rem 0;
+	}
+
+	&__content-login,
+	&__content-registration {
+		padding: 3rem;
 	}
 
 	&__header {
@@ -42,13 +50,63 @@
 		}
 	}
 
-	&__content-profile {
-		@extend .form__content;
-		width: 40rem;
-	}
-
 	&__buttons {
 		display: flex;
 		justify-content: space-between;
+	}
+}
+
+@media screen and (max-width: 950px) {
+	.form {
+		&__header {
+			text-align: center;
+		}
+
+		.primary-button {
+			width: 100%;
+		}
+
+		&__content-profile {
+			width: 40rem;
+			margin: 0 auto;
+		}
+
+		&__content-login,
+		&__content-registration {
+			padding: 3rem;
+		}
+
+		&__buttons {
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 3rem;
+		}
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.form {
+		padding: 0;
+		margin: 0;
+		height: fit-content;
+
+		&__header {
+			text-align: center;
+		}
+
+		.primary-button {
+			width: 100%;
+		}
+
+		&__content-profile {
+			width: 100%;
+		}
+
+		&__buttons {
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 3rem;
+			width: 100%;
+		}
 	}
 }

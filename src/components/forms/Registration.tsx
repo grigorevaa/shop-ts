@@ -47,7 +47,7 @@ export const Registration: React.FC<Props> = ({ onChangeType }) => {
 	return (
 		<FormProvider {...form}>
 			<form className="form" onSubmit={form.handleSubmit(onSubmit)}>
-				<div className="form__content">
+				<div className="form__content-registration">
 					<div className="form__header">
 						<h3 className="form__title">Регистрация</h3>
 						<p className="form__subtitle">

@@ -39,7 +39,7 @@ export const Login: React.FC<Props> = ({ onCloseModal }) => {
 	return (
 		<FormProvider {...form}>
 			<form className="form" onSubmit={form.handleSubmit(onSubmit)}>
-				<div className="form__content">
+				<div className="form__content-login">
 					<div className="form__header">
 						<h3 className="form__title">Войти</h3>
 						<p className="form__subtitle">Введите свои данные, чтобы войти</p>
