@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getNoun } from '../../utils/getNoun';
 import { CountBar } from '../CountBar';
 import { Skeleton } from '../Skeleton';
+import { ProductPageSkeleton } from '../skeletons/ProdctPageSkeleton';
 
 export const ProductPage: React.FC = () => {
 	const { user } = useAppSelector(state => state.auth);
@@ -127,14 +128,9 @@ export const ProductPage: React.FC = () => {
 		toast.success('Товар добавлен в корзину');
 	};
 
+	// if (statusProduct === 'success') {
 	if (statusProduct === 'loading') {
-		return (
-			<div className="container">
-				<div className="skeleton-container">
-					<Skeleton type="product-page" />
-				</div>
-			</div>
-		);
+		return <ProductPageSkeleton />;
 	}
 
 	return (
