@@ -38,6 +38,7 @@ export const CountBar: React.FC<Props> = ({
 				value={value}
 				onChange={e => onChangeInput?.(Number(e.target.value))}
 				disabled={disabledInput}
+				type="number"
 			/>
 			<button className="count-bar__button" onClick={onClickPlus}>
 				<Plus className="count-bar__icon" />
