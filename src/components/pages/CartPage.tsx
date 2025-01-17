@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { getCart } from '../../redux/cart/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { CartItem } from '../CartItem';
-import { CartSidebar } from '../CartSidebar';
-import { EmptyCart } from '../EmptyCart';
 import { CartItemSkeleton } from '../skeletons/CartItemSkeleton';
+import { CartItem } from '../widgets/CartItem';
+import { CartSidebar } from '../widgets/CartSidebar';
+import { EmptyCart } from '../widgets/EmptyCart';
 interface Props {
   className?: string;
 }

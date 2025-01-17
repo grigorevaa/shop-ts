@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { getCategories } from '../../redux/categories/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { sortCategories } from '../../utils/sortCategories';
-import { Categories } from '../Categories';
-import { CategoryProducts } from '../CategoryProducts';
-import { Sort } from '../Sort';
 import { CategoriesSkeleton } from '../skeletons/CategoriesSkeleton';
 import { CategoryWithItemsSkeleton } from '../skeletons/CategoriesWithItemsSkeleton';
+import { Categories } from '../widgets/Categories';
+import { CategoryProducts } from '../widgets/CategoryProducts';
+import { Sort } from '../widgets/Sort';
 
 const sortOptions = [
   { value: 'rating-desc', name: 'рейтинг (убыв.)' },

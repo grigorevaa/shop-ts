@@ -1,8 +1,8 @@
 import { Search as SearchIcon, X } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import { useClickAway, useDebounce } from 'react-use';
-import { fetchSearchList } from '../redux/search/asyncActions';
-import { useAppDispatch, useAppSelector } from '../redux/store';
+import { fetchSearchList } from '../../redux/search/asyncActions';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { SearchItem } from './SearchItem';
 
 export const Search: React.FC = () => {

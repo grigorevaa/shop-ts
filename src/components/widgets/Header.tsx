@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getUser } from '../redux/auth/asyncActions';
-import { getCart } from '../redux/cart/asyncActions';
-import { useAppDispatch, useAppSelector } from '../redux/store';
-import { Logo } from './Logo';
+import { getUser } from '../../redux/auth/asyncActions';
+import { getCart } from '../../redux/cart/asyncActions';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Logo } from '../shared/Logo';
 import { ProfileAndCart } from './ProfileAndCart';
 import { Search } from './Search';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from '../redux/types';
+import { Product } from '../../redux/types';
 interface Props {
   onSelectItem: () => void;
   item: Product;

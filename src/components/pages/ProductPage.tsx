@@ -12,9 +12,9 @@ import {
 } from '../../redux/product/asyncActions';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getNoun } from '../../utils/getNoun';
-import { CountBar } from '../CountBar';
+import { CountBar } from '../shared/CountBar';
 import { BlocksSkeletons } from '../skeletons/BlocksSkeletons';
-import { ProductPageSkeleton } from '../skeletons/ProdctPageSkeleton';
+import { ProductPageSkeleton } from '../skeletons/ProductPageSkeleton';
 
 export const ProductPage: React.FC = () => {
   const { user } = useAppSelector((state) => state.auth);

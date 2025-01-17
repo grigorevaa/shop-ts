@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import {
   changeQuantityProduct,
   deleteProductFromCart,
-} from '../redux/cart/asyncActions';
-import { useAppDispatch } from '../redux/store';
-import { CartItem as TCartItem } from '../redux/types';
-import { CountBar } from './CountBar';
+} from '../../redux/cart/asyncActions';
+import { useAppDispatch } from '../../redux/store';
+import { CartItem as TCartItem } from '../../redux/types';
+import { CountBar } from '../shared';
 interface Props {
   className?: string;
   cartId: number;

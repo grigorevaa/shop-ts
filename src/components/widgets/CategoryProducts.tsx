@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useIntersection } from 'react-use';
-import { Product } from '../redux/types';
+import { Product } from '../../redux/types';
 import { ProductItem } from './ProductItem';
 
 interface Props {
