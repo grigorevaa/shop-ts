@@ -1,100 +1,100 @@
 import supabase from './supabase';
 
 export const getCart = async (userId: string) => {
-	const { data, error } = await supabase
-		.from('cart')
-		.select('*, cartItems(quantity, products(*))')
-		.eq('userId', userId)
-		.single();
+  const { data, error } = await supabase
+    .from('cart')
+    .select('*, cartItems(quantity, products(*))')
+    .eq('userId', userId)
+    .single();
 
-	if (error) {
-		throw new Error(error.message);
-	}
+  if (error) {
+    throw new Error(error.message);
+  }
 
-	return data;
+  return data;
 };
 
 export const getCartItems = async (id: number) => {
-	const { data, error } = await supabase
-		.from('cartItems')
-		.select('quantity, products(*)')
-		.eq('cartId', id);
+  const { data, error } = await supabase
+    .from('cartItems')
+    .select('quantity, products(*)')
+    .eq('cartId', id);
 
-	if (error) {
-		throw new Error(error.message);
-	}
+  if (error) {
+    throw new Error(error.message);
+  }
 
-	console.log(data);
-	return data;
+  console.log(data);
+  return data;
 };
 
 export const changeQuantityProduct = async (
-	cartId: number,
-	totalPrice: number,
-	productId: number,
-	productPrice: number,
-	quantity: number,
+  cartId: number,
+  totalPrice: number,
+  productId: number,
+  productPrice: number,
+  quantity: number,
 ) => {
-	const { data: itemCart, error } = await supabase
-		.from('cartItems')
-		.select('*')
-		.eq('cartId', cartId)
-		.eq('productId', productId)
-		.maybeSingle();
+  const { data: itemCart, error } = await supabase
+    .from('cartItems')
+    .select('*')
+    .eq('cartId', cartId)
+    .eq('productId', productId)
+    .maybeSingle();
 
-	if (error) {
-		throw new Error(error.message);
-	}
+  if (error) {
+    throw new Error(error.message);
+  }
 
-	const returnedPrice = totalPrice + productPrice * quantity;
+  const returnedPrice = totalPrice + productPrice * quantity;
 
-	if (!itemCart) {
-		await supabase.from('cartItems').insert([{ cartId, productId, quantity }]);
+  if (!itemCart) {
+    await supabase.from('cartItems').insert([{ cartId, productId, quantity }]);
 
-		await supabase
-			.from('cart')
-			.update({ totalPrice: returnedPrice })
-			.eq('id', cartId);
+    await supabase
+      .from('cart')
+      .update({ totalPrice: returnedPrice })
+      .eq('id', cartId);
 
-		const returnedQuantity = quantity;
-		console.log(returnedQuantity);
+    const returnedQuantity = quantity;
+    console.log(returnedQuantity);
 
-		return { returnedPrice, returnedQuantity };
-	} else {
-		const returnedQuantity = itemCart.quantity + quantity;
-		await supabase
-			.from('cartItems')
-			.update({ quantity: returnedQuantity })
-			.eq('cartId', cartId)
-			.eq('productId', productId);
+    return { returnedPrice, returnedQuantity };
+  } else {
+    const returnedQuantity = itemCart.quantity + quantity;
+    await supabase
+      .from('cartItems')
+      .update({ quantity: returnedQuantity })
+      .eq('cartId', cartId)
+      .eq('productId', productId);
 
-		await supabase
-			.from('cart')
-			.update({ totalPrice: returnedPrice })
-			.eq('id', cartId);
+    await supabase
+      .from('cart')
+      .update({ totalPrice: returnedPrice })
+      .eq('id', cartId);
 
-		return { returnedPrice, returnedQuantity };
-	}
+    return { returnedPrice, returnedQuantity };
+  }
 };
 
 export const deleteProductFromCart = async (
-	cartId: number,
-	totalPrice: number,
-	productId: number,
-	productPrice: number,
-	quantity: number,
+  cartId: number,
+  totalPrice: number,
+  productId: number,
+  productPrice: number,
+  quantity: number,
 ) => {
-	await supabase
-		.from('cartItems')
-		.delete()
-		.eq('cartId', cartId)
-		.eq('productId', productId);
+  await supabase
+    .from('cartItems')
+    .delete()
+    .eq('cartId', cartId)
+    .eq('productId', productId);
 
-	const returnedPrice = totalPrice - productPrice * quantity;
-	await supabase
-		.from('cart')
-		.update({ totalPrice: returnedPrice })
-		.eq('id', cartId);
+  const returnedPrice = totalPrice - productPrice * quantity;
+  await supabase
+    .from('cart')
+    .update({ totalPrice: returnedPrice })
+    .eq('id', cartId);
 
-	return returnedPrice;
+  return returnedPrice;
 };
