@@ -13,7 +13,6 @@ import {
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getNoun } from '../../utils/getNoun';
 import { CountBar } from '../CountBar';
-import { Skeleton } from '../Skeleton';
 import { BlocksSkeletons } from '../skeletons/BlocksSkeletons';
 import { ProductPageSkeleton } from '../skeletons/ProdctPageSkeleton';
 

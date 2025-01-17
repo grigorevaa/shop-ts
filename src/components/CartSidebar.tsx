@@ -1,7 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import { Status } from '../redux/types';
 import { CartSidebarItem } from './CartSidebarItem';
-import { Skeleton } from './Skeleton';
 import { BlocksSkeletons } from './skeletons/BlocksSkeletons';
 
 const TAX_RATE = 0.05;
