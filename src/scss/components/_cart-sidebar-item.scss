@@ -2,7 +2,6 @@
 
 .cart-sidebar-item {
 	display: flex;
-	// justify-content: space-between;
 	font-size: 1.8rem;
 
 	&__title {
@@ -23,6 +22,24 @@
 	}
 
 	&__price {
-		text-align: right;
+		// text-align: right;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.cart-sidebar-item {
+		font-size: 1.6rem;
+		&__title {
+			flex-grow: 1;
+			width: auto;
+		}
+
+		&__dots {
+			// display: none;
+		}
+
+		&__price {
+			text-align: start;
+		}
 	}
 }

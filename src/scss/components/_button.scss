@@ -36,11 +36,23 @@ button {
 
 .loading-button {
 	.icon {
-		color: $grey-100;
+		color: $grey-500;
 		margin: 0;
 		padding: 0;
 	}
 	width: 10rem;
 	border: 1px solid $grey-500;
-	background-color: $grey-400;
+	background-color: $skeleton-grey-dark;
+}
+
+@media screen and (max-width: 600px) {
+	.loading-button {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 950px) {
+	.loading-button {
+		width: 50rem;
+	}
 }

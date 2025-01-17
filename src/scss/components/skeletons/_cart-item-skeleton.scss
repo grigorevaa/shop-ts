@@ -1,0 +1,48 @@
+@use '../../abstracts' as *;
+
+.c-i-skeleton {
+	width: 100%;
+	height: 10rem;
+	border: 1px solid $skeleton-grey-dark;
+	background-color: $grey-100;
+	border-radius: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	&__image {
+		width: 8rem;
+		height: 8rem;
+		border-radius: 1rem;
+	}
+
+	&__info {
+		width: 60%;
+		height: 3rem;
+		border-radius: 1rem;
+	}
+
+	&__btns {
+		width: 10rem;
+		height: 3rem;
+		border-radius: 1rem;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.c-i-skeleton {
+		&__image {
+			width: 6rem;
+			height: 6rem;
+		}
+
+		&__info {
+		}
+
+		&__btns {
+			display: none;
+		}
+	}
+}

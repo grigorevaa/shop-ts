@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { Status } from '../redux/types';
 import { CartSidebarItem } from './CartSidebarItem';
 import { Skeleton } from './Skeleton';
+import { BlocksSkeletons } from './skeletons/BlocksSkeletons';
 
 const TAX_RATE = 0.05;
 const DELIVERY_PRICE = 200;
@@ -19,7 +20,7 @@ export const CartSidebar: React.FC<Props> = ({ cartPrice, status }) => {
 			<div className="cart-sidebar__title">Итого:</div>
 			<div className="cart-sidebar__price">
 				{status !== 'success' ? (
-					<Skeleton type="cart-sidebar-total" />
+					<BlocksSkeletons type="cart-sidebar-total" />
 				) : (
 					`${summary} ₽`
 				)}
@@ -28,7 +29,7 @@ export const CartSidebar: React.FC<Props> = ({ cartPrice, status }) => {
 				title="Стоимость корзины:"
 				value={
 					status !== 'success' ? (
-						<Skeleton type="cart-sidebar-item" />
+						<BlocksSkeletons type="cart-sidebar-item" />
 					) : (
 						`${cartPrice} ₽`
 					)
@@ -38,7 +39,7 @@ export const CartSidebar: React.FC<Props> = ({ cartPrice, status }) => {
 				title="Налоги:"
 				value={
 					status !== 'success' ? (
-						<Skeleton type="cart-sidebar-item" />
+						<BlocksSkeletons type="cart-sidebar-item" />
 					) : (
 						`${cartPrice * TAX_RATE} ₽`
 					)

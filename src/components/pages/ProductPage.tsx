@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getNoun } from '../../utils/getNoun';
 import { CountBar } from '../CountBar';
 import { Skeleton } from '../Skeleton';
+import { BlocksSkeletons } from '../skeletons/BlocksSkeletons';
 import { ProductPageSkeleton } from '../skeletons/ProdctPageSkeleton';
 
 export const ProductPage: React.FC = () => {
@@ -150,7 +151,7 @@ export const ProductPage: React.FC = () => {
 									<Star size={20} className="icon" />
 									<span className="rating">
 										{statusUserRating === 'loading' ? (
-											<Skeleton type="product-rating" />
+											<BlocksSkeletons type="product-rating" />
 										) : (
 											ratingString
 										)}
@@ -177,12 +178,14 @@ export const ProductPage: React.FC = () => {
 								{user && (
 									<div className="product-page__user-review">
 										{statusUserRating === 'loading' ? (
-											<Skeleton type="product-user-rating" />
+											<BlocksSkeletons type="user-rating" />
 										) : (
-											<div className="product-page__user-review-stars">
-												{userRating
-													? 'Ваша оценка/изменить оценку:'
-													: 'Оцените продукт:'}
+											<>
+												<p className="product-page__user-review-stars">
+													{userRating
+														? 'Ваша оценка/изменить оценку:'
+														: 'Оцените продукт:'}
+												</p>
 												<Rating
 													className="product-page__user-rating"
 													value={rating}
@@ -195,7 +198,7 @@ export const ProductPage: React.FC = () => {
 														}
 													}}
 												/>
-											</div>
+											</>
 										)}
 									</div>
 								)}
