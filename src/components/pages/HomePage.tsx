@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { sortCategories } from '../../utils/sortCategories';
 import { Categories } from '../Categories';
 import { CategoryProducts } from '../CategoryProducts';
-import { Skeleton } from '../Skeleton';
 import { Sort } from '../Sort';
 import { CategoriesSkeleton } from '../skeletons/CategoriesSkeleton';
 import { CategoryWithItemsSkeleton } from '../skeletons/CategoriesWithItemsSkeleton';

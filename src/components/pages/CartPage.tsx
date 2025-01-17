@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { CartItem } from '../CartItem';
 import { CartSidebar } from '../CartSidebar';
 import { EmptyCart } from '../EmptyCart';
-import { Skeleton } from '../Skeleton';
 import { CartItemSkeleton } from '../skeletons/CartItemSkeleton';
 
 interface Props {
