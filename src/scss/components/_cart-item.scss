@@ -5,25 +5,21 @@
 	grid-template-columns: 10rem 2fr 1fr 1fr 1fr;
 	height: 10rem;
 	align-items: center;
+	justify-items: center;
 	font-size: 1.8rem;
-	padding-left: 1.2rem;
 	padding-right: 1.2rem;
-	border-bottom: 1px solid $grey-200;
-	border-top: 1px solid $grey-200;
+	border: 1px solid $grey-200;
 	border-radius: 1.2rem;
+
+	&__name {
+		text-align: center;
+		justify-self: center;
+	}
 
 	&__image {
 		width: 8rem;
 		height: 8rem;
 		border-radius: 1.2rem;
-	}
-
-	&__total {
-		justify-self: center;
-	}
-
-	&__quantity {
-		justify-self: center;
 	}
 
 	.secondary-button {
@@ -32,5 +28,39 @@
 		padding: 1rem;
 		font-size: 1.4rem;
 		border-radius: 1.2rem;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.cart-item {
+		height: auto;
+		grid-template-columns: 1fr 1fr;
+		padding: 0;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		row-gap: 2rem;
+
+		&__image {
+			width: 10rem;
+			height: 10rem;
+		}
+
+		&__name {
+			grid-row: 2;
+			font-size: 2rem;
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+
+		&__total {
+			font-size: 2rem;
+		}
+
+		.secondary-button {
+			grid-column: 2;
+			width: 10rem;
+			height: 5rem;
+			justify-self: center;
+		}
 	}
 }

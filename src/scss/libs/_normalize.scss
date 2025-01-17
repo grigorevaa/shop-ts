@@ -45,10 +45,11 @@ ol[role='list'] {
 body {
 	min-height: 100vh;
 	line-height: 1.5;
+	overflow-x: hidden;
 }
 
 main {
-	min-height: calc((100vh - 26rem));
+	min-height: calc((100vh - 24rem));
 }
 
 /* Set shorter line heights on headings and interactive elements */

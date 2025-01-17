@@ -1,0 +1,29 @@
+.categories-skeleton {
+	display: flex;
+	gap: 1rem;
+
+	&__item {
+		width: 10rem;
+		height: 2.4rem;
+		border-radius: 1rem;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.categories-skeleton {
+		margin-top: 2rem;
+		margin-bottom: 1.5rem;
+
+		&__item {
+			width: 8rem;
+		}
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 950px) {
+	.categories-skeleton {
+		&__item {
+			width: 8rem;
+		}
+	}
+}

@@ -5,6 +5,7 @@ import { CartItem } from '../CartItem';
 import { CartSidebar } from '../CartSidebar';
 import { EmptyCart } from '../EmptyCart';
 import { Skeleton } from '../Skeleton';
+import { CartItemSkeleton } from '../skeletons/CartItemSkeleton';
 
 interface Props {
 	className?: string;
@@ -36,18 +37,16 @@ export const CartPage: React.FC<Props> = () => {
 					<h1 className="cart-page__title">Корзина</h1>
 					{items.length === 0 && status === 'success' && <EmptyCart />}
 
-					{status !== 'success' ? (
-						<Skeleton type="cart-items" />
-					) : (
-						items.map((item, index) => (
-							<CartItem
-								item={item}
-								key={index}
-								cartId={cartId!}
-								totalPrice={totalPrice}
-							/>
-						))
-					)}
+					{status !== 'success'
+						? [...Array(3)].map((_, index) => <CartItemSkeleton key={index} />)
+						: items.map((item, index) => (
+								<CartItem
+									item={item}
+									key={index}
+									cartId={cartId!}
+									totalPrice={totalPrice}
+								/>
+						  ))}
 				</div>
 				<CartSidebar cartPrice={totalPrice} status={status} />
 			</div>
